@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%; /* Off-white / Bone #FAFAFA */
+    --foreground: 222 47% 11%; /* Slate 900 #0F172A */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 334 77% 84%; /* Soft Pink Pastel #FBCFE8 */
+    --primary-foreground: 334 82% 25%; /* Darker pink for contrast */
+    --secondary: 199 57% 79%; /* Sky Blue Pastel #BAE6FD */
+    --secondary-foreground: 199 89% 25%; /* Darker blue for contrast */
+    --muted: 215 16% 47%; /* Slate 500 #64748B */
+    --muted-foreground: 215 16% 47%;
+    --accent: 334 77% 95%; /* Very light pink tint */
+    --accent-foreground: 334 77% 84%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%; /* Light slate border */
+    --input: 214 32% 91%;
+    --ring: 334 77% 84%;
+    --radius: 1rem; /* rounded-2xl feel */
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 334 77% 60%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 199 57% 60%;
+    --secondary-foreground: 222 47% 6%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 334 77% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .soft-shadow {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  }
+  .pastel-gradient-pink {
+    background: linear-gradient(135deg, #FDF2F8 0%, #FBCFE8 100%);
+  }
+  .pastel-gradient-blue {
+    background: linear-gradient(135deg, #F0F9FF 0%, #BAE6FD 100%);
+  }
+}

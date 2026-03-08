@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3000" # Map host port 3006 to container port 3000 (Next.js production default)
+    restart: unless-stopped
+    # Optional: For development with hot-reloading, you might mount volumes and
+    # override the command to run `npm run dev` instead of `npm start`.
+    # For example:
+    # volumes:
+    #   - .:/app
+    # command: npm run dev
