@@ -6,6 +6,9 @@ import { ProfileHeader } from '@/features/profile-header';
 import { useProfile } from '@/shared/hooks/useProfile';
 import { Loader2, Target, Compass } from 'lucide-react';
 
+import { YouTubeEmbed } from '@/shared/components/atoms';
+import { Youtube, PlayCircle } from 'lucide-react';
+
 export default function Home() {
     const { data: profile, loading, error } = useProfile();
 
@@ -72,6 +75,53 @@ export default function Home() {
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            {/* Nueva Sección: Proyectos Destacados (Video) */}
+            <section className="py-24 bg-background relative overflow-hidden">
+                <div className="container mx-auto px-4 md:px-8 max-w-5xl">
+                    <div className="text-center mb-16 space-y-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-status-gold/10 rounded-full border border-status-gold/30">
+                            <Youtube className="w-4 h-4 text-status-goldText" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-status-goldText">Canal Oficial</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-heading font-black text-status-teal italic tracking-tighter">
+                            Investigación y Desarrollo
+                        </h2>
+                        <p className="text-status-teal/60 font-medium max-w-2xl mx-auto">
+                            Explora mis análisis sobre la economía digital y el impacto de las nuevas tecnologías en el sector rural del Ecuador.
+                        </p>
+                    </div>
+
+                    <div className="relative group">
+                        {/* Decoración de fondo */}
+                        <div className="absolute -inset-4 bg-gradient-to-r from-status-gold/20 to-status-teal/20 rounded-[4rem] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+                        
+                        <div className="relative bg-white p-4 md:p-8 rounded-[3.5rem] shadow-2xl border-2 border-status-gold/10">
+                            <YouTubeEmbed 
+                                videoId="pRCQ_Fuyl74" 
+                                title="Análisis de Economía Digital - Karen Herrera Ruiz"
+                            />
+                            
+                            <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 px-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-status-teal/5 rounded-2xl">
+                                        <PlayCircle className="w-6 h-6 text-status-teal" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-status-teal">Presentación de Proyecto</h4>
+                                        <p className="text-xs text-status-teal/60 font-medium italic">Metodologías cuantitativas aplicadas</p>
+                                    </div>
+                                </div>
+                                <div className="h-[1px] flex-1 bg-status-gold/20 hidden md:block mx-4" />
+                                <div className="text-right">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-status-goldText block mb-1">Estatus</span>
+                                    <span className="text-xs font-bold text-status-teal bg-secondary/30 px-3 py-1 rounded-full border border-status-gold/20 italic">Publicado · UNEMI</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

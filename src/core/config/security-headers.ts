@@ -1,7 +1,7 @@
 export const securityHeaders = [
     {
         key: "Content-Security-Policy",
-        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;",
+        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self'; frame-src 'self' https://www.youtube.com https://youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests;",
     },
     {
         key: "X-DNS-Prefetch-Control",
@@ -17,7 +17,7 @@ export const securityHeaders = [
     },
     {
         key: "X-Frame-Options",
-        value: "DENY",
+        value: "SAMEORIGIN",
     },
     {
         key: "X-Content-Type-Options",
