@@ -51,9 +51,14 @@ export function RootLayout({ children }: RootLayoutProps) {
                         
                         {/* Column 1: Identity & Mission */}
                         <div className="space-y-6">
-                            <div className="flex items-center gap-3">
-                                <img src="/images/logo.png" alt="Logo" className="h-10 w-auto invert brightness-0" />
-                                <span className="text-xl font-heading font-bold tracking-wider">Karen Herrera <span className="text-status-gold">Ruiz</span></span>
+                            <div className="flex items-center gap-4">
+                                <div className="p-2 bg-white/10 rounded-xl border border-status-gold/30 backdrop-blur-sm shadow-lg shadow-status-gold/5">
+                                    <img src="/images/logo.png" alt="Logo" className="h-10 w-auto object-contain" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-xl font-heading font-bold tracking-wider leading-tight">Karen Herrera <span className="text-status-gold">Ruiz</span></span>
+                                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-status-gold/80">Economic Strategy</span>
+                                </div>
                             </div>
                             <p className="text-sm leading-relaxed text-white/70 text-balance">
                                 Basada en los criterios de excelencia y rigor analítico, mi objetivo es el análisis de las dinámicas económicas y sociales mediante la gestión de datos, aportando valor desde la investigación académica hasta la gobernanza local.
@@ -105,9 +110,9 @@ export function RootLayout({ children }: RootLayoutProps) {
                         <div className="space-y-6">
                             <h3 className="text-status-gold font-black uppercase tracking-[0.2em] text-xs">Investigación</h3>
                             <ul className="space-y-3 text-sm font-bold text-white/60">
-                                <li><a href="#about" className="hover:text-white transition-colors">Sobre Mí</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Publicaciones</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Actualidad Económica</a></li>
+                                <li><a href="/about" className="hover:text-white transition-colors">Sobre Mí</a></li>
+                                <li><a href="/publicaciones" className="hover:text-white transition-colors">Publicaciones</a></li>
+                                <li><a href="/actualidad-economica" className="hover:text-white transition-colors">Actualidad Económica</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Actividades Académicas</a></li>
                             </ul>
                         </div>
