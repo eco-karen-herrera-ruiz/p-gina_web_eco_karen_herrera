@@ -6,7 +6,7 @@ export const mockProfileData: ProfileData = {
     university: "Universidad Estatal de Milagro (UNEMI)",
     about: "Estudiante de Economía en la UNEMI con un fuerte enfoque en el análisis cuantitativo y la gestión de datos. Comprometida con la excelencia académica y el desarrollo de soluciones digitales que aporten valor económico y social.",
     email: "kherrerar3@unemi.edu.ec",
-    linkedin: "https://linkedin.com/in/karenherrera",
+    linkedin: "https://www.linkedin.com/in/dayanna-herrera-3a912b38a",
     github: "https://github.com/eco-karen-herrera-ruiz",
     avatarUrl: "/images/Gemini_Generated_Image_gmj6kpgmj6kpgmj6.png",
     resumeUrl: "/docs/karen_herrera_resume.pdf",

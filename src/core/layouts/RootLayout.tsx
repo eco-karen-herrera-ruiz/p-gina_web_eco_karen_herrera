@@ -64,7 +64,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                                 Basada en los criterios de excelencia y rigor analítico, mi objetivo es el análisis de las dinámicas económicas y sociales mediante la gestión de datos, aportando valor desde la investigación académica hasta la gobernanza local.
                             </p>
                             <div className="flex items-center gap-4">
-                                <a href="https://linkedin.com/in/karenherrera" target="_blank" className="text-status-gold hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+                                <a href="https://www.linkedin.com/in/dayanna-herrera-3a912b38a" target="_blank" className="text-status-gold hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
                                 <a href="https://github.com/eco-karen-herrera-ruiz" target="_blank" className="text-status-gold hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
                                 <a href="https://facebook.com/profile.php?id=61588392219336" target="_blank" className="text-status-gold hover:text-white transition-colors"><Facebook className="w-5 h-5" /></a>
                                 <a href="https://x.com/EcKaren_Herrera" target="_blank" className="text-status-gold hover:text-white transition-colors">
