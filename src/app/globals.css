@@ -4,48 +4,49 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%; /* Off-white / Bone #FAFAFA */
-    --foreground: 222 47% 11%; /* Slate 900 #0F172A */
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    /* Professional Executive Palette */
+    --background: 210 20% 98%;       /* #F8F9FA - Clean off-white */
+    --foreground: 210 40% 10%;       /* #0F1E2D - Deep navy text */
+    --card: 0 0% 100%;               /* #FFFFFF */
+    --card-foreground: 210 40% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 334 77% 84%; /* Soft Pink Pastel #FBCFE8 */
-    --primary-foreground: 334 82% 25%; /* Darker pink for contrast */
-    --secondary: 199 57% 79%; /* Sky Blue Pastel #BAE6FD */
-    --secondary-foreground: 199 89% 25%; /* Darker blue for contrast */
-    --muted: 215 16% 47%; /* Slate 500 #64748B */
-    --muted-foreground: 215 16% 47%;
-    --accent: 334 77% 95%; /* Very light pink tint */
-    --accent-foreground: 334 77% 84%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%; /* Light slate border */
-    --input: 214 32% 91%;
-    --ring: 334 77% 84%;
-    --radius: 1rem; /* rounded-2xl feel */
+    --popover-foreground: 210 40% 10%;
+    --primary: 210 50% 12%;          /* #0F1E2D - Executive navy */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 55% 51%;         /* #C8963E - Executive gold */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 10% 55%;            /* #7B8A9B - Muted text */
+    --muted-foreground: 210 10% 55%;
+    --accent: 40 55% 95%;            /* #FDF5E9 - Warm gold tint */
+    --accent-foreground: 40 55% 35%; /* Dark gold */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 16% 88%;           /* #DDE1E6 - Light border */
+    --input: 210 16% 88%;
+    --ring: 210 50% 25%;             /* Navy ring */
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 6%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 6%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 334 77% 60%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 199 57% 60%;
-    --secondary-foreground: 222 47% 6%;
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 32% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 334 77% 60%;
+    --background: 210 40% 6%;
+    --foreground: 210 20% 90%;
+    --card: 210 40% 8%;
+    --card-foreground: 210 20% 90%;
+    --popover: 210 40% 8%;
+    --popover-foreground: 210 20% 90%;
+    --primary: 40 55% 51%;
+    --primary-foreground: 210 40% 6%;
+    --secondary: 210 30% 25%;
+    --secondary-foreground: 210 20% 90%;
+    --muted: 210 20% 25%;
+    --muted-foreground: 210 10% 60%;
+    --accent: 40 55% 20%;
+    --accent-foreground: 40 55% 70%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 20% 90%;
+    --border: 210 20% 20%;
+    --input: 210 20% 20%;
+    --ring: 40 55% 51%;
   }
 }
 
@@ -55,17 +56,32 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
 @layer utilities {
-  .soft-shadow {
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  .text-balance {
+    text-wrap: balance;
   }
-  .pastel-gradient-pink {
-    background: linear-gradient(135deg, #FDF2F8 0%, #FBCFE8 100%);
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
   }
-  .pastel-gradient-blue {
-    background: linear-gradient(135deg, #F0F9FF 0%, #BAE6FD 100%);
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  .gold-underline {
+    @apply relative;
+  }
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-12 h-[3px] bg-secondary rounded-full;
+  }
+
+  .section-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(15, 30, 45, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
   }
 }

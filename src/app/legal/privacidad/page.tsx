@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import LegalTemplate from '@/shared/components/templates/LegalTemplate';
 import { Lock } from 'lucide-react';
 
@@ -6,22 +6,22 @@ export default function Privacidad() {
     return (
         <LegalTemplate 
             title="Privacidad" 
-            icon={<Lock className="w-8 h-8 text-status-gold" />}
+            icon={<Lock className="w-8 h-8 text-brand-gold" />}
         >
             <div className="space-y-8">
                 <section>
-                    <h2 className="text-2xl font-black text-status-teal border-b-2 border-status-gold pb-2 uppercase tracking-widest">Base Legal</h2>
+                    <h2 className="text-2xl font-black text-brand-navy border-b-2 border-brand-gold pb-2 uppercase tracking-widest">Base Legal</h2>
                     <p className="mt-4">
                         Conforme a la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador, Karen Herrera Ruiz (en adelante, el "Responsable") garantiza el tratamiento de sus datos personales bajo los principios de licitud, transparencia, finalidad y seguridad.
                     </p>
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-black text-status-teal border-b-2 border-status-gold pb-2 uppercase tracking-widest">Tratamiento y Finalidad</h2>
+                    <h2 className="text-2xl font-black text-brand-navy border-b-2 border-brand-gold pb-2 uppercase tracking-widest">Tratamiento y Finalidad</h2>
                     <p className="mt-4">
                         Los datos recabados a través del formulario de contacto y herramientas analíticas se utilizarán para:
                     </p>
-                    <ul className="list-disc pl-6 space-y-2 mt-4 text-status-goldText font-bold">
+                    <ul className="list-disc pl-6 space-y-2 mt-4 text-brand-goldText font-bold">
                         <li>Gestión de consultas profesionales y académicas.</li>
                         <li>Análisis de tráfico mediante cookies de Google Analytics (GA4).</li>
                         <li>Mejora de la experiencia de usuario y optimización de marca personal.</li>
@@ -29,11 +29,11 @@ export default function Privacidad() {
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-black text-status-teal border-b-2 border-status-gold pb-2 uppercase tracking-widest">Derechos ARCO (Ecuador)</h2>
-                    <p className="mt-4 text-status-teal">
+                    <h2 className="text-2xl font-black text-brand-navy border-b-2 border-brand-gold pb-2 uppercase tracking-widest">Derechos ARCO (Ecuador)</h2>
+                    <p className="mt-4 text-brand-navy">
                         Usted tiene derecho a ejercer sus derechos de:
                     </p>
-                    <ul className="list-disc pl-6 space-y-2 mt-4 text-status-goldText font-bold">
+                    <ul className="list-disc pl-6 space-y-2 mt-4 text-brand-goldText font-bold">
                         <li>Acceso, Rectificación y Actualización.</li>
                         <li>Eliminación, Oposición y Portabilidad.</li>
                         <li>Suspensión del tratamiento.</li>
@@ -44,7 +44,7 @@ export default function Privacidad() {
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-black text-status-teal border-b-2 border-status-gold pb-2 uppercase tracking-widest">Almacenamiento y Seguridad</h2>
+                    <h2 className="text-2xl font-black text-brand-navy border-b-2 border-brand-gold pb-2 uppercase tracking-widest">Almacenamiento y Seguridad</h2>
                     <p className="mt-4">
                         Sus datos se almacenan en servidores seguros y no se ceden a terceros, salvo por obligaciones legales o para el funcionamiento técnico (como Netlify).
                     </p>

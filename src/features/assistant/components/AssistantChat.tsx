@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -365,14 +365,14 @@ export function EcoAssistant() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsOpen(true)}
-                        className="h-16 w-16 bg-gradient-to-tr from-status-pink to-status-gold text-status-teal rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex items-center justify-center border-2 border-white/50 backdrop-blur-sm group"
+                        className="h-16 w-16 bg-gradient-to-tr from-brand-navy to-brand-gold text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex items-center justify-center border-2 border-white/50 backdrop-blur-sm group"
                     >
                         <Sparkles className="w-8 h-8 group-hover:animate-pulse" />
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
                             transition={{ duration: 2, repeat: Infinity }}
-                            className="absolute inset-0 rounded-full bg-status-gold/30 -z-10"
+                            className="absolute inset-0 rounded-full bg-brand-gold/30 -z-10"
                         />
                     </motion.button>
                 )}
@@ -386,19 +386,19 @@ export function EcoAssistant() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
                     >
-                        <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-status-gold/30 relative">
+                        <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-brand-gold/30 relative">
                             {/* Flecha indicadora (solo visual para guiar al candado) */}
                             <div className="absolute -top-12 right-1/4 animate-bounce hidden md:block">
-                                <div className="text-white font-bold text-xs bg-status-teal px-3 py-1 rounded-full shadow-lg">
+                                <div className="text-white font-bold text-xs bg-brand-navy px-3 py-1 rounded-full shadow-lg">
                                     Haz clic aquí arriba 🔒
                                 </div>
-                                <div className="w-2 h-2 bg-status-teal rotate-45 mx-auto -mt-1 shadow-lg" />
+                                <div className="w-2 h-2 bg-brand-navy rotate-45 mx-auto -mt-1 shadow-lg" />
                             </div>
 
-                            <div className="w-16 h-16 bg-status-gold/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                                <Mic className="w-8 h-8 text-status-gold" />
+                            <div className="w-16 h-16 bg-brand-gold/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                                <Mic className="w-8 h-8 text-brand-gold" />
                             </div>
-                            <h3 className="text-xl font-heading font-black text-status-teal text-center mb-4 italic">Acceso Bloqueado</h3>
+                            <h3 className="text-xl font-heading font-black text-brand-navy text-center mb-4 italic">Acceso Bloqueado</h3>
                             <p className="text-sm text-zinc-600 text-center mb-8 leading-relaxed">
                                 El navegador ha bloqueado el micrófono. Para activarlo directamente:
                                 <br /><br />
@@ -412,7 +412,7 @@ export function EcoAssistant() {
                                         setShowPermissionGuide(false);
                                         toggleVoice();
                                     }}
-                                    className="w-full py-4 bg-status-teal text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-black transition-all shadow-lg"
+                                    className="w-full py-4 bg-brand-navy text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-black transition-all shadow-lg"
                                 >
                                     Ya lo habilité, reintentar
                                 </button>
@@ -437,31 +437,31 @@ export function EcoAssistant() {
                         className="w-[400px] h-[600px] bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(15,41,38,0.2)] flex flex-col overflow-hidden"
                     >
                         {/* Header */}
-                        <div className="px-8 py-6 bg-gradient-to-r from-status-teal to-status-teal/90 text-white flex items-center justify-between">
+                        <div className="px-8 py-6 bg-gradient-to-r from-brand-navy to-brand-navy/90 text-white flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="relative">
-                                    <div className="w-12 h-12 bg-status-gold rounded-2xl flex items-center justify-center shadow-lg transform -rotate-6">
-                                        <Bot className="w-7 h-7 text-status-teal" />
+                                    <div className="w-12 h-12 bg-brand-gold rounded-2xl flex items-center justify-center shadow-lg transform -rotate-6">
+                                        <Bot className="w-7 h-7 text-brand-navy" />
                                     </div>
-                                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-status-teal animate-pulse" />
+                                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-brand-navy animate-pulse" />
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-lg font-heading font-black tracking-tight leading-none italic">EcoAssistant</span>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-status-gold/80 mt-1">AI Intelligence v3.0</span>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold/80 mt-1">AI Intelligence v3.0</span>
                                 </div>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="p-2 hover:bg-white/10 rounded-xl transition-colors"
                             >
-                                <X className="w-5 h-5 text-status-gold" />
+                                <X className="w-5 h-5 text-brand-gold" />
                             </button>
                         </div>
 
                         {/* Messages Body */}
                         <div
                             ref={scrollRef}
-                            className="flex-1 overflow-y-auto px-6 py-8 space-y-6 scrollbar-thin scrollbar-thumb-status-gold/20"
+                            className="flex-1 overflow-y-auto px-6 py-8 space-y-6 scrollbar-thin scrollbar-thumb-brand-gold/20"
                         >
                             {messages.map((msg, idx) => (
                                 <motion.div
@@ -471,15 +471,15 @@ export function EcoAssistant() {
                                     className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                 >
                                     <div className={`max-w-[85%] px-5 py-4 text-sm font-medium leading-relaxed rounded-[1.5rem] shadow-sm transform transition-all ${msg.role === 'user'
-                                        ? 'bg-status-teal text-white rounded-tr-none'
-                                        : 'bg-white border border-status-gold/30 text-status-teal rounded-tl-none'
+                                        ? 'bg-brand-navy text-white rounded-tr-none'
+                                        : 'bg-white border border-brand-gold/30 text-brand-navy rounded-tl-none'
                                         }`}>
                                         <div className="prose prose-sm prose-invert max-w-none">
                                             <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
                                                 components={{
                                                     p: ({ children }) => <p className="mb-0 last:mb-0">{children}</p>,
-                                                    strong: ({ children }) => <strong className="font-black text-status-gold">{children}</strong>,
+                                                    strong: ({ children }) => <strong className="font-black text-brand-gold">{children}</strong>,
                                                     ul: ({ children }) => <ul className="list-disc ml-4 my-2">{children}</ul>,
                                                     ol: ({ children }) => <ol className="list-decimal ml-4 my-2">{children}</ol>,
                                                 }}
@@ -488,7 +488,7 @@ export function EcoAssistant() {
                                             </ReactMarkdown>
                                         </div>
                                         {msg.role === 'assistant' && (
-                                            <div className="mt-2 pt-2 border-t border-status-gold/10 flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-status-goldText">
+                                            <div className="mt-2 pt-2 border-t border-brand-gold/10 flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-brand-goldText">
                                                 <Zap className="w-3 h-3" />
                                                 EcoTech Engine
                                             </div>
@@ -498,32 +498,32 @@ export function EcoAssistant() {
                             ))}
                             {loading && (
                                 <div className="flex gap-2 pl-4 items-center">
-                                    <div className="w-8 h-8 bg-status-gold/10 rounded-full flex items-center justify-center">
-                                        <div className="w-1.5 h-1.5 bg-status-gold rounded-full animate-bounce [animation-delay:0s]" />
-                                        <div className="w-1.5 h-1.5 bg-status-gold rounded-full animate-bounce [animation-delay:0.2s] mx-1" />
-                                        <div className="w-1.5 h-1.5 bg-status-gold rounded-full animate-bounce [animation-delay:0.4s]" />
+                                    <div className="w-8 h-8 bg-brand-gold/10 rounded-full flex items-center justify-center">
+                                        <div className="w-1.5 h-1.5 bg-brand-gold rounded-full animate-bounce [animation-delay:0s]" />
+                                        <div className="w-1.5 h-1.5 bg-brand-gold rounded-full animate-bounce [animation-delay:0.2s] mx-1" />
+                                        <div className="w-1.5 h-1.5 bg-brand-gold rounded-full animate-bounce [animation-delay:0.4s]" />
                                     </div>
-                                    <span className="text-[10px] font-bold text-status-goldText uppercase tracking-widest animate-pulse">Analizando...</span>
+                                    <span className="text-[10px] font-bold text-brand-goldText uppercase tracking-widest animate-pulse">Analizando...</span>
                                 </div>
                             )}
                             {isLoadingVoice && (
                                 <div className="flex gap-2 pl-4 items-center">
-                                    <div className="w-8 h-8 bg-status-teal/10 rounded-full flex items-center justify-center">
-                                        <Volume2 className="w-4 h-4 text-status-teal animate-pulse" />
+                                    <div className="w-8 h-8 bg-brand-navy/10 rounded-full flex items-center justify-center">
+                                        <Volume2 className="w-4 h-4 text-brand-navy animate-pulse" />
                                     </div>
-                                    <span className="text-[10px] font-bold text-status-teal uppercase tracking-widest animate-pulse">Generando voz...</span>
+                                    <span className="text-[10px] font-bold text-brand-navy uppercase tracking-widest animate-pulse">Generando voz...</span>
                                 </div>
                             )}
                         </div>
 
                         {/* Input Area */}
-                        <div className="p-6 bg-white/40 border-t border-status-gold/20 backdrop-blur-md">
+                        <div className="p-6 bg-white/40 border-t border-brand-gold/20 backdrop-blur-md">
                             <div className="flex gap-3 mb-4">
                                 <button
                                     onClick={toggleVoice}
                                     className={`flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest ${isHandsFree
                                         ? 'bg-red-500 text-white animate-pulse'
-                                        : 'bg-status-teal/5 text-status-teal hover:bg-status-teal/10'
+                                        : 'bg-brand-navy/5 text-brand-navy hover:bg-brand-navy/10'
                                         }`}
                                 >
                                     {isHandsFree ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -532,7 +532,7 @@ export function EcoAssistant() {
                                 <button
                                     onClick={() => setIsSpeaking(!isSpeaking)}
                                     className={`flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all font-bold text-[10px] uppercase tracking-widest ${isSpeaking
-                                        ? 'bg-status-gold/20 text-status-goldText'
+                                        ? 'bg-brand-gold/20 text-brand-goldText'
                                         : 'bg-zinc-100 text-zinc-400'
                                         }`}
                                 >
@@ -546,17 +546,17 @@ export function EcoAssistant() {
                                     onChange={e => setInput(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && handleSend()}
                                     placeholder="Escribe tu consulta económica..."
-                                    className="w-full pl-6 pr-14 py-4 bg-white/80 border-2 border-status-gold/20 rounded-[1.25rem] text-sm font-medium outline-none focus:border-status-gold focus:ring-4 focus:ring-status-gold/10 transition-all placeholder:text-status-teal/30"
+                                    className="w-full pl-6 pr-14 py-4 bg-white/80 border-2 border-brand-gold/20 rounded-[1.25rem] text-sm font-medium outline-none focus:border-brand-gold focus:ring-4 focus:ring-brand-gold/10 transition-all placeholder:text-brand-navy/30"
                                 />
                                 <button
                                     onClick={() => handleSend()}
                                     disabled={!input.trim() || loading}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-status-teal text-status-gold rounded-xl hover:bg-black transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:scale-100"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-brand-navy text-brand-gold rounded-xl hover:bg-black transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:scale-100"
                                 >
                                     <Send className="w-4 h-4" />
                                 </button>
                             </div>
-                            <div className="mt-4 text-[9px] text-center font-bold text-status-teal/40 uppercase tracking-widest">
+                            <div className="mt-4 text-[9px] text-center font-bold text-brand-navy/40 uppercase tracking-widest">
                                 Powered by Llama 3.1 & Groq
                             </div>
                         </div>

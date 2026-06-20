@@ -1,16 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, X, Cookie } from 'lucide-react';
+import { Cookie, X } from 'lucide-react';
 
 export function CookieBanner() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Check if user already gave consent
         const consent = localStorage.getItem('cookie-consent');
         if (!consent) {
-            // Show with a small delay for better UX
             const timer = setTimeout(() => setIsVisible(true), 1500);
             return () => clearTimeout(timer);
         }
@@ -30,48 +28,41 @@ export function CookieBanner() {
 
     return (
         <div className="fixed bottom-6 left-6 right-6 z-[100] md:left-auto md:max-w-md animate-in fade-in slide-in-from-bottom-10 duration-700">
-            <div className="bg-white/95 backdrop-blur-md border-2 border-status-gold p-6 rounded-[2rem] shadow-2xl shadow-status-teal/20 relative overflow-hidden">
-                {/* Decorative background */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-status-pink/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
-                
-                <div className="flex items-start gap-4 relative z-10">
-                    <div className="p-3 bg-status-gold/20 rounded-2xl shrink-0">
-                        <Cookie className="w-6 h-6 text-status-goldText" />
+            <div className="bg-white/95 backdrop-blur-md border border-border p-5 rounded-2xl shadow-card-hover relative overflow-hidden">
+                <div className="flex items-start gap-3 relative z-10">
+                    <div className="p-2.5 bg-brand-gold/10 rounded-xl shrink-0">
+                        <Cookie className="w-5 h-5 text-brand-gold" />
                     </div>
-                    
-                    <div className="space-y-3">
-                        <h4 className="text-sm font-black text-status-teal uppercase tracking-widest flex items-center gap-2">
+
+                    <div className="space-y-3 flex-1">
+                        <h4 className="text-xs font-bold text-brand-navy uppercase tracking-wider">
                             Privacidad & Datos
                         </h4>
-                        <p className="text-[13px] leading-relaxed text-status-teal/80 font-medium">
-                            Usamos cookies para mejorar tu <span className="text-status-goldText font-bold">experiencia profesional</span> y analizar el tráfico académico de este portafolio. ¿Aceptas el uso de estas herramientas?
+                        <p className="text-xs leading-relaxed text-brand-neutral">
+                            Usamos cookies para mejorar tu experiencia y analizar el tráfico de este portafolio académico. ¿Aceptas?
                         </p>
-                        
-                        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+
+                        <div className="flex gap-2 pt-1">
                             <button
                                 onClick={handleAccept}
-                                className="flex-1 px-6 py-2.5 bg-status-teal text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-status-gold hover:text-status-teal transition-all shadow-lg shadow-status-teal/20"
+                                className="flex-1 px-4 py-2 bg-brand-navy text-white text-[10px] font-bold uppercase tracking-wider rounded-lg hover:bg-brand-navy-light transition-colors"
                             >
-                                Aceptar Todo
+                                Aceptar
                             </button>
                             <button
                                 onClick={handleDecline}
-                                className="flex-1 px-6 py-2.5 bg-white border-2 border-status-gold/30 text-status-goldText text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-status-pink/10 transition-all"
+                                className="flex-1 px-4 py-2 bg-white border border-border text-brand-neutral-light text-[10px] font-bold uppercase tracking-wider rounded-lg hover:bg-background transition-colors"
                             >
-                                Solo Esenciales
+                                Esenciales
                             </button>
                         </div>
-                        
-                        <p className="text-[9px] text-center text-status-teal/40 font-bold uppercase tracking-tighter">
-                            Cumplimiento con LOPDP (Ecuador) & GDPR
-                        </p>
                     </div>
 
-                    <button 
+                    <button
                         onClick={() => setIsVisible(false)}
-                        className="text-status-teal/30 hover:text-status-teal transition-colors"
+                        className="text-brand-neutral-light/40 hover:text-brand-navy transition-colors"
                     >
-                        <X className="w-5 h-5" />
+                        <X className="w-4 h-4" />
                     </button>
                 </div>
             </div>

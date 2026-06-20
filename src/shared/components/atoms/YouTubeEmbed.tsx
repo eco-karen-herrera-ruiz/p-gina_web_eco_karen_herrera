@@ -14,7 +14,7 @@ export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
 }) => {
     return (
         <div className={cn(
-            "relative w-full aspect-video rounded-[2.5rem] overflow-hidden border-2 border-status-gold/20 shadow-xl shadow-status-teal/5 bg-black/5",
+            "relative w-full aspect-video overflow-hidden bg-black/5",
             className
         )}>
             <iframe
