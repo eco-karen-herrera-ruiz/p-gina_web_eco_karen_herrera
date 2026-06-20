@@ -54,17 +54,17 @@ export class GeminiService {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                console.error("GROQ_API_ERROR:", errorData);
-                throw new Error(errorData.error?.message || "Error al conectar con el servidor de IA.");
+                console.error("GROQ_API_ERROR:", response.status);
+                throw new Error("Error al conectar con el servidor de IA.");
             }
 
             const data = await response.json();
             return data.choices[0].message.content;
 
-        } catch (error: any) {
-            console.error("SERVICE_LAYER_ERROR [Groq]:", error);
-            throw new Error(error.message || "Error al procesar la solicitud con el motor de IA.");
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : 'Error desconocido';
+            console.error("SERVICE_LAYER_ERROR [Groq]:", message);
+            throw new Error("Error al procesar la solicitud con el motor de IA.");
         }
     }
 
@@ -97,8 +97,8 @@ export class GeminiService {
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || "Error al conectar con Groq.");
+            console.error("GROQ_STREAM_ERROR:", response.status);
+            throw new Error("Error al conectar con Groq.");
         }
 
         return response.body; // Return the raw stream
