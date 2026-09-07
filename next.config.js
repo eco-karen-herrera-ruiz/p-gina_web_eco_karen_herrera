@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'standalone',
+    // 'standalone' is only for self-hosting (e.g. the Docker image) — Vercel packages
+    // serverless functions itself and the two conflict, so skip it on Vercel builds.
+    output: process.env.VERCEL ? undefined : 'standalone',
     reactStrictMode: true,
     poweredByHeader: false,
     experimental: {
