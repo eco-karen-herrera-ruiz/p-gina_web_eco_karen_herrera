@@ -1,9 +1,16 @@
 import React from 'react';
+import Image from 'next/image';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { ProfileHeader } from '@/features/profile-header';
 import { ProfileService } from '@/shared/services/profileService';
-import { Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2, Vote, Calendar, Award } from 'lucide-react';
+import { Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2, Vote } from 'lucide-react';
 import { YouTubeEmbed } from '@/shared/components/atoms';
+
+const campaignStats = [
+    { value: '1°', label: 'Posición' },
+    { value: '97.83', label: 'Promedio' },
+    { value: '7–9', label: 'Sept · Vota' },
+];
 
 export default async function Home() {
     const profile = await ProfileService.getProfile();
@@ -27,47 +34,63 @@ export default async function Home() {
             {/* Representación Estudiantil 2026 — featured campaign card */}
             <section className="relative -mt-12 md:-mt-16 pb-6">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="relative bg-white rounded-3xl shadow-card-hover border border-border/50 overflow-hidden max-w-4xl mx-auto">
-                        <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold" />
-                        <div className="p-6 md:p-9 pl-8 md:pl-11">
-                            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-                                <div className="flex-1 space-y-4">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center shrink-0">
-                                            <Vote className="w-4.5 h-4.5 text-brand-gold" />
+                    <div className="relative bg-brand-navy rounded-3xl shadow-card-hover overflow-hidden max-w-5xl mx-auto">
+                        <div className="absolute inset-0 opacity-[0.04] section-pattern" />
+                        <div className="relative p-6 md:p-9">
+                            <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+                                {/* Identity */}
+                                <div className="flex items-center gap-4 lg:gap-5">
+                                    <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-brand-gold/60 shrink-0">
+                                        <Image
+                                            src="/images/karen-herrera-avatar.png"
+                                            alt="Karen Herrera Ruiz"
+                                            fill
+                                            sizes="96px"
+                                            className="object-cover object-top"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-1.5">
+                                            <Vote className="w-3.5 h-3.5 text-brand-gold" />
+                                            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Representación 2026</span>
                                         </div>
-                                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Representación Estudiantil 2026</span>
-                                    </div>
-
-                                    <h2 className="text-xl md:text-2xl font-heading font-bold text-brand-navy tracking-tight leading-snug">
-                                        Candidatura a representante estudiantil — 2do nivel C2
-                                    </h2>
-
-                                    <p className="text-sm text-brand-neutral leading-relaxed max-w-lg">
-                                        Propuesta construida sobre disciplina académica, organización y trato respetuoso — no sobre promesas vacías.
-                                    </p>
-
-                                    <div className="flex flex-wrap items-center gap-3 pt-1">
-                                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-brand-gold/10 px-3 py-1.5 rounded-full">
-                                            <Award className="w-3.5 h-3.5 text-brand-gold" />
-                                            Posición 1 · Promedio 97.83
-                                        </span>
-                                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-background px-3 py-1.5 rounded-full border border-border/60">
-                                            <Calendar className="w-3.5 h-3.5 text-brand-gold" />
-                                            Votaciones: 7–9 de septiembre
-                                        </span>
+                                        <h2 className="text-white text-xl md:text-2xl font-heading font-bold tracking-tight leading-snug">
+                                            Karen Herrera Ruiz
+                                        </h2>
+                                        <p className="text-white/50 text-[10px] font-semibold uppercase tracking-wider">
+                                            Candidata · 2do Nivel C2
+                                        </p>
+                                        <div className="inline-flex items-center gap-2 bg-white/10 rounded-lg pl-1 pr-2.5 py-1 mt-1">
+                                            <div className="relative w-5 h-5 rounded overflow-hidden shrink-0">
+                                                <Image src="/images/UNEMI.jpg" alt="UNEMI" fill sizes="20px" className="object-cover" />
+                                            </div>
+                                            <span className="text-white/70 text-[9px] font-bold uppercase tracking-wider">Universidad Estatal de Milagro</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="shrink-0">
-                                    <a
-                                        href="/representacion-estudiantil"
-                                        className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navy-light transition-all duration-200 shadow-lg whitespace-nowrap"
-                                    >
-                                        Conoce el plan de gobierno estudiantil
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </a>
+                                {/* Stat tiles */}
+                                <div className="flex-1 grid grid-cols-3 gap-3">
+                                    {campaignStats.map((stat) => (
+                                        <div key={stat.label} className="bg-white/[0.06] border border-white/10 rounded-2xl px-3 py-3 md:py-4 text-center">
+                                            <div className="text-white text-xl md:text-2xl font-heading font-bold">{stat.value}</div>
+                                            <div className="text-white/50 text-[9px] font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
+                                        </div>
+                                    ))}
                                 </div>
+                            </div>
+
+                            <div className="mt-7 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-5">
+                                <p className="text-white/60 text-sm leading-relaxed max-w-lg">
+                                    Propuesta construida sobre disciplina académica, organización y trato respetuoso — no sobre promesas vacías.
+                                </p>
+                                <a
+                                    href="/representacion-estudiantil"
+                                    className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-gold text-brand-navy text-xs font-bold uppercase tracking-wider hover:bg-white transition-all duration-200 shadow-gold-glow shrink-0 whitespace-nowrap"
+                                >
+                                    Conoce el plan de gobierno estudiantil
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </a>
                             </div>
                         </div>
                     </div>
