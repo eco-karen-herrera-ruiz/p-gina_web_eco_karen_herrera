@@ -561,7 +561,7 @@ export function EcoAssistant() {
                                 </button>
                             </div>
                             <div className="mt-4 text-[9px] text-center font-bold text-brand-navy/40 uppercase tracking-widest">
-                                Powered by Llama 3.1 & Groq
+                                Powered by GPT-OSS & Groq
                             </div>
                         </div>
                     </motion.div>

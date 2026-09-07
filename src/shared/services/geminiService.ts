@@ -46,10 +46,11 @@ export class GeminiService {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: "llama-3.1-8b-instant", // El modelo más rápido y estable de Groq
+                    model: "openai/gpt-oss-20b",
                     messages,
                     temperature: 0.7,
-                    max_tokens: 1024
+                    max_tokens: 1024,
+                    reasoning_effort: "low"
                 })
             });
 
@@ -88,10 +89,11 @@ export class GeminiService {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "llama-3.1-8b-instant",
+                model: "openai/gpt-oss-20b",
                 messages,
                 temperature: 0.7,
                 max_tokens: 1024,
+                reasoning_effort: "low",
                 stream: true, // Enable streaming
             })
         });

@@ -2,10 +2,33 @@
 
 import React from 'react';
 import { RootLayout } from '@/core/layouts/RootLayout';
-import { YouTubeEmbed } from '@/shared/components/atoms';
-import { TrendingUp, Calendar, Newspaper, ArrowRight, Share2, Check, PlayCircle } from 'lucide-react';
+import { YouTubeEmbed, FacebookVideoCard } from '@/shared/components/atoms';
+import { TrendingUp, Calendar, Newspaper, ArrowRight, Share2, Check, PlayCircle, Video } from 'lucide-react';
 import Link from 'next/link';
 import { useShare } from '@/shared/hooks/useShare';
+
+const moreVideos = [
+    {
+        url: 'https://www.facebook.com/share/v/1DJWpWdfvv/',
+        title: 'El Ciclo Contable, paso a paso',
+        desc: 'Del Balance Inicial a los Estados Financieros: el proceso completo que separa a quienes entienden de finanzas de quienes solo memorizan para el examen.',
+    },
+    {
+        url: 'https://www.facebook.com/share/v/1DU7E6NoeD/',
+        title: 'Microeconomía, Macroeconomía y Elasticidad',
+        desc: 'Una explicación clara y con enfoque humano de cómo estos conceptos moldean las decisiones económicas del día a día.',
+    },
+    {
+        url: 'https://www.facebook.com/share/v/1c3bxfgzMj/',
+        title: 'Epistemología e Investigación Científica',
+        desc: 'Por qué no existe una verdad científica absoluta, y cómo ese principio debe guiar la investigación económica seria.',
+    },
+    {
+        url: 'https://www.facebook.com/share/v/1FDzS6wUtR/',
+        title: 'Análisis y Reflexión Económica',
+        desc: 'Más contenido en video sobre economía, datos y desarrollo.',
+    },
+];
 
 export default function ActualidadEconomicaPage() {
     const { share, copied } = useShare('Análisis de Economía Digital — Karen Herrera Ruiz');
@@ -116,6 +139,30 @@ export default function ActualidadEconomicaPage() {
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                </section>
+
+                {/* More videos */}
+                <section className="pb-24">
+                    <div className="container mx-auto px-4 md:px-8">
+                        <div className="flex items-center gap-3 mb-10">
+                            <div className="p-3 bg-brand-navy rounded-2xl">
+                                <Video className="w-6 h-6 text-brand-gold" />
+                            </div>
+                            <h2 className="text-2xl md:text-3xl font-heading font-black text-brand-navy italic">Más Videos de Análisis</h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {moreVideos.map((video) => (
+                                <div key={video.url} className="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover card-hover border border-border/40">
+                                    <FacebookVideoCard videoUrl={video.url} title={video.title} />
+                                    <div className="p-5 space-y-2">
+                                        <h3 className="font-heading font-bold text-brand-navy text-sm leading-snug">{video.title}</h3>
+                                        <p className="text-xs text-brand-neutral-light leading-relaxed">{video.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

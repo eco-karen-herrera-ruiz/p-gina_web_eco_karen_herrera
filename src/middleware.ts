@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
         "style-src 'self' 'unsafe-inline'",
         "img-src 'self' blob: data: https:",
         "font-src 'self'",
-        "frame-src 'self' https://www.youtube.com https://youtube.com",
+        "frame-src 'self' https://www.youtube.com https://youtube.com https://www.facebook.com",
         "connect-src 'self' https://iygxeephcxbxtrtbfmrl.supabase.co https://api.groq.com https://api.elevenlabs.io",
         "object-src 'none'",
         "base-uri 'self'",
