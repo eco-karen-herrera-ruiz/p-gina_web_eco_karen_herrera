@@ -93,7 +93,7 @@ export default function RepresentacionEstudiantilPage() {
                         <div className="text-center mb-14 space-y-3">
                             <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/10 rounded-full border border-brand-gold/20">
                                 <GraduationCap className="w-3.5 h-3.5 text-brand-gold" />
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Por qué esta candidatura</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Por qué esta candidatura</span>
                             </div>
                             <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy tracking-tight">
                                 Tres cosas que no van a cambiar

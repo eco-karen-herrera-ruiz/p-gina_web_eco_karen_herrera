@@ -44,14 +44,14 @@ export default function AboutPage() {
                                 {/* Sidebar */}
                                 <div className="lg:col-span-4 space-y-8">
                                     <div className="space-y-3">
-                                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold border-b border-border pb-2">Origen</h3>
+                                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText border-b border-border pb-2">Origen</h3>
                                         <p className="text-brand-navy font-semibold">Palenque, Provincia de Los Ríos</p>
                                         <p className="text-xs text-brand-neutral-light">Cuna de agricultores y valores fundamentales.</p>
                                     </div>
                                     <div className="space-y-3">
-                                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold border-b border-border pb-2">Estatus Actual</h3>
+                                        <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText border-b border-border pb-2">Estatus Actual</h3>
                                         <p className="text-brand-navy font-semibold text-sm">Economista en Formación · UNEMI</p>
-                                        <p className="text-brand-gold font-bold text-[10px] uppercase tracking-wider bg-brand-gold/10 px-3 py-2 rounded-lg">
+                                        <p className="text-brand-goldText font-bold text-[10px] uppercase tracking-wider bg-brand-gold/10 px-3 py-2 rounded-lg">
                                             Fundadora EcoTech Herrera & Pérez S.A.S.
                                         </p>
                                     </div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
                                             <TrendingUp className="w-5 h-5 text-brand-gold" />
                                         </div>
                                         <div className="flex flex-col">
-                                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Estatus Actual</span>
+                                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Estatus Actual</span>
                                             <span className="text-sm font-bold text-brand-navy">Investigadora en Formación · UNEMI</span>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
                                     <div className="pt-4">
                                         <a
                                             href="/publicaciones"
-                                            className="inline-flex items-center gap-2 text-brand-gold text-sm font-bold hover:text-brand-navy transition-colors"
+                                            className="inline-flex items-center gap-2 text-brand-goldText text-sm font-bold hover:text-brand-navy transition-colors"
                                         >
                                             Ver publicaciones
                                             <ArrowRight className="w-4 h-4" />

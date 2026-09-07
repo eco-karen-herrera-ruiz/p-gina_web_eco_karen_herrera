@@ -9,7 +9,9 @@ const nextConfig = {
         serverComponentsExternalPackages: ['isomorphic-dompurify', 'jsdom'],
     },
     images: {
-        domains: ['iygxeephcxbxtrtbfmrl.supabase.co'],
+        remotePatterns: [
+            { protocol: 'https', hostname: 'iygxeephcxbxtrtbfmrl.supabase.co' },
+        ],
     },
     // Content-Security-Policy is set per-request (with a nonce) in src/middleware.ts,
     // since the App Router needs a nonce/'strict-dynamic' for its own inline hydration

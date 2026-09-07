@@ -93,14 +93,10 @@ export const mockProfileData: ProfileData = {
 
 export class ProfileService {
     /**
-     * Fetches profile data. In a real application, this would call an API.
-     * Here we mock a slight delay to simulate network latency.
+     * Returns profile data. Static for now — swap for a real API call when
+     * there's a backend to call.
      */
     static async getProfile(): Promise<ProfileData> {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(mockProfileData);
-            }, 500); // 500ms network simulation
-        });
+        return mockProfileData;
     }
 }
