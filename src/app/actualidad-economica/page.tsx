@@ -9,8 +9,8 @@ import { useShare } from '@/shared/hooks/useShare';
 
 const moreVideos = [
     {
-        url: 'https://www.facebook.com/share/v/1DJWpWdfvv/',
-        thumbnail: '/images/fb-1DJWpWdfvv.jpg',
+        url: 'https://www.facebook.com/share/v/1FDzS6wUtR/',
+        thumbnail: '/images/fb-1FDzS6wUtR.jpg',
         title: 'El Ciclo Contable, paso a paso',
         desc: 'Del Balance Inicial a los Estados Financieros: el proceso completo que separa a quienes entienden de finanzas de quienes solo memorizan para el examen.',
     },
@@ -27,10 +27,10 @@ const moreVideos = [
         desc: 'Por qué no existe una verdad científica absoluta, y cómo ese principio debe guiar la investigación económica seria.',
     },
     {
-        url: 'https://www.facebook.com/share/v/1FDzS6wUtR/',
-        thumbnail: '/images/fb-1FDzS6wUtR.jpg',
-        title: 'Análisis y Reflexión Económica',
-        desc: 'Más contenido en video sobre economía, datos y desarrollo.',
+        url: 'https://www.facebook.com/share/v/1DJWpWdfvv/',
+        thumbnail: '/images/fb-1DJWpWdfvv.jpg',
+        title: 'Datos Financieros UNEMI',
+        desc: 'Más contenido en video sobre economía, datos y desarrollo institucional.',
     },
 ];
 
