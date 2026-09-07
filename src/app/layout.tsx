@@ -19,9 +19,24 @@ const dmMono = DM_Mono({
     variable: "--font-dm-mono",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://ecokarenherrera.dpdns.org';
+
 export const metadata: Metadata = {
+    metadataBase: new URL(baseUrl),
     title: "Karen Herrera Ruiz | Portafolio Profesional",
     description: "Portafolio digital de Karen Herrera Ruiz, economista y analista de datos de la UNEMI.",
+    openGraph: {
+        title: "Karen Herrera Ruiz | Portafolio Profesional",
+        description: "Portafolio digital de Karen Herrera Ruiz, economista y analista de datos de la UNEMI.",
+        url: baseUrl,
+        siteName: "Karen Herrera Ruiz",
+        locale: "es_EC",
+        type: "website",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function AppLayout({
