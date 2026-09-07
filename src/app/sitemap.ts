@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const routes = [
         '',
         '/about',
+        '/representacion-estudiantil',
         '/publicaciones',
         '/actualidad-economica',
         '/legal/aviso-legal',

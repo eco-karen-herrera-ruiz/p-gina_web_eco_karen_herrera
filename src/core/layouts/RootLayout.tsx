@@ -16,7 +16,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                     {/* Logo */}
                     <a className="flex items-center gap-3 group" href="/">
                         <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-brand-navy group-hover:bg-brand-navy-light transition-colors duration-300">
-                            <img src="/images/logo.png" alt="KH" className="h-8 w-auto object-contain brightness-0 invert" />
+                            <img src="/images/logo.svg" alt="KH" className="h-6 w-auto object-contain brightness-0 invert" />
                         </div>
                         <div className="flex flex-col leading-tight">
                             <span className="text-sm md:text-base font-bold text-brand-navy tracking-tight">
@@ -46,8 +46,14 @@ export function RootLayout({ children }: RootLayoutProps) {
                             </a>
                         ))}
                         <a
+                            href="/representacion-estudiantil"
+                            className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-navy rounded-lg hover:bg-brand-gold-light transition-colors duration-200"
+                        >
+                            Representación 2026
+                        </a>
+                        <a
                             href="/about"
-                            className="ml-3 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg hover:bg-brand-navy-light transition-colors duration-200"
+                            className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg hover:bg-brand-navy-light transition-colors duration-200"
                         >
                             Contacto
                             <ArrowUpRight className="w-3 h-3" />
@@ -80,7 +86,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                         <div className="lg:col-span-4 space-y-5">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-lg bg-brand-gold flex items-center justify-center">
-                                    <img src="/images/logo.png" alt="Logo" className="h-7 w-auto object-contain brightness-0" />
+                                    <img src="/images/logo.svg" alt="Logo" className="h-5 w-auto object-contain brightness-0" />
                                 </div>
                                 <div className="flex flex-col leading-tight">
                                     <span className="text-lg font-heading font-bold tracking-tight">
@@ -124,6 +130,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                                 {[
                                     { href: '/', label: 'Inicio' },
                                     { href: '/about', label: 'Sobre Mí' },
+                                    { href: '/representacion-estudiantil', label: 'Representación 2026' },
                                     { href: '/publicaciones', label: 'Publicaciones' },
                                     { href: '/actualidad-economica', label: 'Análisis Económico' },
                                 ].map(({ href, label }) => (

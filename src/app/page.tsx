@@ -78,6 +78,29 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Representación Estudiantil 2026 — campaign banner */}
+            <section className="py-4">
+                <div className="container mx-auto px-4 md:px-8">
+                    <a
+                        href="/representacion-estudiantil"
+                        className="group flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-navy rounded-2xl px-6 py-5 shadow-card hover:shadow-card-hover transition-all duration-300"
+                    >
+                        <div className="flex items-center gap-4 text-center sm:text-left">
+                            <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-widest text-brand-navy bg-brand-gold px-3 py-1.5 rounded-full">
+                                Votaciones 7–9 sept
+                            </span>
+                            <p className="text-white text-sm md:text-base font-semibold">
+                                Candidata a Representante Estudiantil 2026 — conoce mi propuesta
+                            </p>
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold group-hover:text-white transition-colors">
+                            Ver propuesta
+                            <ArrowRight className="w-4 h-4" />
+                        </span>
+                    </a>
+                </div>
+            </section>
+
             {/* Mission & Vision */}
             <section className="py-16 md:py-24 bg-white">
                 <div className="container mx-auto px-4 md:px-8">
