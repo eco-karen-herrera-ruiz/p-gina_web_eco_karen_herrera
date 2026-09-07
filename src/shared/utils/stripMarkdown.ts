@@ -26,6 +26,12 @@ export function stripMarkdown(markdown: string): string {
         .replace(/^>\s+/gm, '')
         // Remove horizontal rules (---)
         .replace(/^---$/gm, '')
+        // Strip emoji so the TTS engine doesn't narrate them by name
+        // (e.g. "👋" being read aloud as "mano saludando"). Target is es5,
+        // so no \u{...}/u-flag syntax — match astral chars as surrogate
+        // pairs, plus the common BMP symbol/dingbat blocks and modifiers.
+        .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '')
+        .replace(new RegExp('[\\u2600-\\u27BF\\u2300-\\u23FF\\u2B00-\\u2BFF\\u2190-\\u21FF\\uFE0F\\u200D\\u20E3]', 'g'), '')
         // Clean up multiple newlines
         .replace(/\n+/g, ' ')
         // Remove extra spaces
