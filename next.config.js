@@ -1,32 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
     reactStrictMode: true,
     poweredByHeader: false,
+    experimental: {
+        serverComponentsExternalPackages: ['isomorphic-dompurify', 'jsdom'],
+    },
     images: {
         domains: ['iygxeephcxbxtrtbfmrl.supabase.co'],
     },
+    // Content-Security-Policy is set per-request (with a nonce) in src/middleware.ts,
+    // since the App Router needs a nonce/'strict-dynamic' for its own inline hydration
+    // scripts — a static script-src 'self' here would block them. The rest of the
+    // security headers are static and safe to set here.
     async headers() {
         return [
             {
                 source: "/(.*)",
                 headers: [
-                    {
-                        key: "Content-Security-Policy",
-                        value: [
-                            "default-src 'self'",
-                            "script-src 'self'",
-                            "style-src 'self' 'unsafe-inline'",
-                            "img-src 'self' blob: data: https:",
-                            "font-src 'self'",
-                            "frame-src 'self' https://www.youtube.com https://youtube.com",
-                            "connect-src 'self' https://iygxeephcxbxtrtbfmrl.supabase.co https://api.groq.com https://api.elevenlabs.io",
-                            "object-src 'none'",
-                            "base-uri 'self'",
-                            "form-action 'self'",
-                            "frame-ancestors 'none'",
-                            "upgrade-insecure-requests",
-                        ].join('; '),
-                    },
                     {
                         key: "Strict-Transport-Security",
                         value: "max-age=63072000; includeSubDomains; preload",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { DM_Sans, Playfair_Display, DM_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +29,11 @@ export default function AppLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    // Reading the nonce here opts this render into per-request (dynamic) rendering,
+    // which is required for Next to thread the CSP nonce (set in middleware.ts) into
+    // its own inline hydration scripts.
+    headers().get('x-nonce');
+
     return (
         <html lang="es" className={`${dmSans.variable} ${playfair.variable} ${dmMono.variable}`}>
             <body className="min-h-screen bg-background font-sans antialiased">

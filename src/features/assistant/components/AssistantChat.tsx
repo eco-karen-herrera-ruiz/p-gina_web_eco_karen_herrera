@@ -1,11 +1,11 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Sparkles, Mic, MicOff, Volume2, VolumeX, Send, X, Bot, MessageSquare, Zap } from 'lucide-react';
-import { stripMarkdown } from '@/shared/utils/sanitize';
+import { stripMarkdown } from '@/shared/utils/stripMarkdown';
 
 interface Message {
     role: 'user' | 'assistant';
