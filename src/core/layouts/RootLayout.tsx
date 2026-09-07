@@ -59,7 +59,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                             Representación 2026
                         </a>
                         <a
-                            href="/about"
+                            href="mailto:kherrerar3@unemi.edu.ec?subject=Consulta%20Profesional&body=Hola%20Karen,%20me%20gustar%C3%ADa%20contactarte..."
                             className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg hover:bg-brand-navy-light transition-colors duration-200"
                         >
                             Contacto
@@ -99,7 +99,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                             Representación 2026
                         </a>
                         <a
-                            href="/about"
+                            href="mailto:kherrerar3@unemi.edu.ec?subject=Consulta%20Profesional&body=Hola%20Karen,%20me%20gustar%C3%ADa%20contactarte..."
                             onClick={() => setIsMobileMenuOpen(false)}
                             className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg"
                         >
