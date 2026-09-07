@@ -163,14 +163,26 @@ export default function RepresentacionEstudiantilPage() {
                             Las votaciones son del 7 al 9 de septiembre
                         </h2>
                         <p className="text-white/60 text-sm max-w-lg mx-auto">
-                            Si tienes preguntas sobre esta candidatura o quieres plantear algo que deba llevar como representante, escríbeme directamente.
+                            Tu voto se registra en el Sistema de Gestión Académica (SGA) de la UNEMI, en el módulo Proceso Estudiantil.
                         </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                        <div className="pt-2">
+                            <a
+                                href="https://sgaestudiante.unemi.edu.ec/alu_procesoestudiantil"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2.5 px-10 py-4 rounded-xl bg-brand-gold text-brand-navy text-sm font-bold uppercase tracking-wide hover:bg-white transition-all duration-200 shadow-gold-glow"
+                            >
+                                <Vote className="w-5 h-5" />
+                                Votar Ahora en el SGA
+                            </a>
+                            <p className="text-white/40 text-[11px] mt-2.5">Inicia sesión con tu cuenta institucional UNEMI</p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                             <a
                                 href="https://wa.me/593986023149"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-gold text-brand-navy text-sm font-bold hover:bg-white transition-all duration-200 shadow-gold-glow"
+                                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl border border-white/20 text-white/80 text-sm font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-200"
                             >
                                 Escribir por WhatsApp
                                 <ArrowRight className="w-4 h-4" />
