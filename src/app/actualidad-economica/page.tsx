@@ -110,9 +110,9 @@ export default function ActualidadEconomicaPage() {
                                     </div>
                                     <h4 className="font-heading font-black text-brand-navy italic">¿Quieres recibir mis informes?</h4>
                                     <p className="text-xs text-brand-navy/60 font-medium">Suscríbete para recibir análisis detallados directamente en tu correo.</p>
-                                    <Link href="mailto:kherrerar3@unemi.edu.ec" className="w-full py-3 bg-brand-navy text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-gold hover:text-brand-navy transition-all">
+                                    <a href="mailto:kherrerar3@unemi.edu.ec" className="w-full py-3 bg-brand-navy text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-gold hover:text-brand-navy transition-all inline-block text-center">
                                         Contactar
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
 
