@@ -15,8 +15,8 @@ export function RootLayout({ children }: RootLayoutProps) {
                 <div className="container flex items-center justify-between h-16 md:h-18">
                     {/* Logo */}
                     <a className="flex items-center gap-3 group" href="/">
-                        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-brand-navy group-hover:bg-brand-navy-light transition-colors duration-300">
-                            <img src="/images/logo.svg" alt="KH" className="h-6 w-auto object-contain brightness-0 invert" />
+                        <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-brand-navy group-hover:bg-brand-navy-light transition-colors duration-300 p-1.5">
+                            <img src="/images/logo.png" alt="Eco.KH" className="h-full w-full object-contain" />
                         </div>
                         <div className="flex flex-col leading-tight">
                             <span className="text-sm md:text-base font-bold text-brand-navy tracking-tight">
@@ -85,8 +85,8 @@ export function RootLayout({ children }: RootLayoutProps) {
                         {/* Column 1: Brand — spans 4 */}
                         <div className="lg:col-span-4 space-y-5">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-brand-gold flex items-center justify-center">
-                                    <img src="/images/logo.svg" alt="Logo" className="h-5 w-auto object-contain brightness-0" />
+                                <div className="w-12 h-12 rounded-lg bg-white flex items-center justify-center p-1.5">
+                                    <img src="/images/logo.png" alt="Eco.KH" className="h-full w-full object-contain" />
                                 </div>
                                 <div className="flex flex-col leading-tight">
                                     <span className="text-lg font-heading font-bold tracking-tight">
