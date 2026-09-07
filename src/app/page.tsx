@@ -2,7 +2,7 @@ import React from 'react';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { ProfileHeader } from '@/features/profile-header';
 import { ProfileService } from '@/shared/services/profileService';
-import { Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2 } from 'lucide-react';
+import { Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2, Vote, Calendar, Award } from 'lucide-react';
 import { YouTubeEmbed } from '@/shared/components/atoms';
 
 export default async function Home() {
@@ -24,8 +24,58 @@ export default async function Home() {
                 </div>
             </section>
 
+            {/* Representación Estudiantil 2026 — featured campaign card */}
+            <section className="relative -mt-12 md:-mt-16 pb-6">
+                <div className="container mx-auto px-4 md:px-8">
+                    <div className="relative bg-white rounded-3xl shadow-card-hover border border-border/50 overflow-hidden max-w-4xl mx-auto">
+                        <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-gold" />
+                        <div className="p-6 md:p-9 pl-8 md:pl-11">
+                            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+                                <div className="flex-1 space-y-4">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center shrink-0">
+                                            <Vote className="w-4.5 h-4.5 text-brand-gold" />
+                                        </div>
+                                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Representación Estudiantil 2026</span>
+                                    </div>
+
+                                    <h2 className="text-xl md:text-2xl font-heading font-bold text-brand-navy tracking-tight leading-snug">
+                                        Candidatura a representante estudiantil — 2do nivel C2
+                                    </h2>
+
+                                    <p className="text-sm text-brand-neutral leading-relaxed max-w-lg">
+                                        Propuesta construida sobre disciplina académica, organización y trato respetuoso — no sobre promesas vacías.
+                                    </p>
+
+                                    <div className="flex flex-wrap items-center gap-3 pt-1">
+                                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-brand-gold/10 px-3 py-1.5 rounded-full">
+                                            <Award className="w-3.5 h-3.5 text-brand-gold" />
+                                            Posición 1 · Promedio 97.83
+                                        </span>
+                                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-background px-3 py-1.5 rounded-full border border-border/60">
+                                            <Calendar className="w-3.5 h-3.5 text-brand-gold" />
+                                            Votaciones: 7–9 de septiembre
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="shrink-0">
+                                    <a
+                                        href="/representacion-estudiantil"
+                                        className="group flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navy-light transition-all duration-200 shadow-lg whitespace-nowrap"
+                                    >
+                                        Conoce el plan de gobierno estudiantil
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Stats Bar */}
-            <section className="relative -mt-10 pb-6">
+            <section className="relative pb-6">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {[
@@ -48,29 +98,6 @@ export default async function Home() {
                             </div>
                         ))}
                     </div>
-                </div>
-            </section>
-
-            {/* Representación Estudiantil 2026 — campaign banner */}
-            <section className="py-4">
-                <div className="container mx-auto px-4 md:px-8">
-                    <a
-                        href="/representacion-estudiantil"
-                        className="group flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-navy rounded-2xl px-6 py-5 shadow-card hover:shadow-card-hover transition-all duration-300"
-                    >
-                        <div className="flex items-center gap-4 text-center sm:text-left">
-                            <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-widest text-brand-navy bg-brand-gold px-3 py-1.5 rounded-full">
-                                Votaciones 7–9 sept
-                            </span>
-                            <p className="text-white text-sm md:text-base font-semibold">
-                                Candidata a Representante Estudiantil 2026 — conoce mi propuesta
-                            </p>
-                        </div>
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold group-hover:text-white transition-colors">
-                            Ver propuesta
-                            <ArrowRight className="w-4 h-4" />
-                        </span>
-                    </a>
                 </div>
             </section>
 
