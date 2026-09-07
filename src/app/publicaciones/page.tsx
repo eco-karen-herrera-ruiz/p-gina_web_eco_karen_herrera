@@ -1,12 +1,15 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { YouTubeEmbed } from '@/shared/components/atoms';
-import { BookOpen, BrainCircuit, BarChart3, ArrowLeft, Share2, Quote, Sparkles } from 'lucide-react';
+import { BookOpen, BrainCircuit, BarChart3, ArrowLeft, Share2, Check, Quote, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { useShare } from '@/shared/hooks/useShare';
 
 export default function PublicacionesPage() {
+    const { share, copied } = useShare('Resiliencia Económica y el Auge de la IA — Karen Herrera Ruiz');
+
     return (
         <RootLayout>
             <div className="bg-background min-h-screen">
@@ -130,8 +133,12 @@ export default function PublicacionesPage() {
                                                 <span className="text-brand-navy font-black">Español</span>
                                             </div>
                                         </div>
-                                        <button className="w-full flex items-center justify-center gap-2 py-4 bg-brand-navy text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-navy transition-all group">
-                                            <Share2 className="w-4 h-4 group-hover:rotate-12 transition-transform" /> Compartir Hallazgos
+                                        <button
+                                            onClick={share}
+                                            className="w-full flex items-center justify-center gap-2 py-4 bg-brand-navy text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-navy transition-all group"
+                                        >
+                                            {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4 group-hover:rotate-12 transition-transform" />}
+                                            {copied ? '¡Copiado!' : 'Compartir Hallazgos'}
                                         </button>
                                     </div>
 

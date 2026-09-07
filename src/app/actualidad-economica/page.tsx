@@ -1,12 +1,15 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { YouTubeEmbed } from '@/shared/components/atoms';
-import { TrendingUp, Calendar, Newspaper, ArrowRight, Share2, PlayCircle } from 'lucide-react';
+import { TrendingUp, Calendar, Newspaper, ArrowRight, Share2, Check, PlayCircle } from 'lucide-react';
 import Link from 'next/link';
+import { useShare } from '@/shared/hooks/useShare';
 
 export default function ActualidadEconomicaPage() {
+    const { share, copied } = useShare('Análisis de Economía Digital — Karen Herrera Ruiz');
+
     return (
         <RootLayout>
             <div className="bg-background min-h-screen">
@@ -54,8 +57,12 @@ export default function ActualidadEconomicaPage() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button className="hidden md:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-goldText hover:text-brand-navy transition-colors">
-                                            <Share2 className="w-4 h-4" /> Compartir
+                                        <button
+                                            onClick={share}
+                                            className="hidden md:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-goldText hover:text-brand-navy transition-colors"
+                                        >
+                                            {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+                                            {copied ? '¡Copiado!' : 'Compartir'}
                                         </button>
                                     </div>
 
@@ -87,9 +94,11 @@ export default function ActualidadEconomicaPage() {
                                             'Impacto de la Economía Digital',
                                             'Políticas Públicas de Fomento'
                                         ].map((topic, i) => (
-                                            <li key={i} className="flex items-center gap-3 text-sm font-bold group cursor-pointer hover:text-brand-gold transition-colors">
-                                                <ArrowRight className="w-4 h-4 text-brand-gold group-hover:translate-x-1 transition-transform" />
-                                                {topic}
+                                            <li key={i}>
+                                                <Link href="/publicaciones" className="flex items-center gap-3 text-sm font-bold group hover:text-brand-gold transition-colors">
+                                                    <ArrowRight className="w-4 h-4 text-brand-gold group-hover:translate-x-1 transition-transform" />
+                                                    {topic}
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>

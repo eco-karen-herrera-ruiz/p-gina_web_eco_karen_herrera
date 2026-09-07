@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import LegalTemplate from '@/shared/components/templates/LegalTemplate';
 import { Scale } from 'lucide-react';
 
