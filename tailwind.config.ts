@@ -54,10 +54,14 @@ const config = {
                     "navy-light": "#1A3447",
                     gold: "#C8963E",
                     "gold-light": "#E8D5B0",
+                    // WCAG AA-safe (4.5:1+ on white) variant of `gold`, for text on light backgrounds.
+                    // `gold` itself only passes on dark backgrounds (~2.7:1 on white).
+                    goldText: "#8B5E1F",
                     white: "#FFFFFF",
                     "off-white": "#F8F9FA",
                     neutral: "#4A5568",
-                    "neutral-light": "#7B8A9B",
+                    // Darkened from #7B8A9B to pass WCAG AA (4.5:1) on white/light backgrounds.
+                    "neutral-light": "#64748B",
                 },
             },
             borderRadius: {

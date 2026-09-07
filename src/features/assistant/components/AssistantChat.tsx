@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Sparkles, Mic, MicOff, Volume2, VolumeX, Send, X, Bot, MessageSquare, Zap } from 'lucide-react';
+import { Mic, MicOff, Volume2, VolumeX, Send, X, BotMessageSquare, Zap } from 'lucide-react';
 import { stripMarkdown } from '@/shared/utils/stripMarkdown';
 
 interface Message {
@@ -365,9 +365,10 @@ export function EcoAssistant() {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsOpen(true)}
+                        aria-label="Abrir asistente virtual EcoAssistant"
                         className="h-16 w-16 bg-gradient-to-tr from-brand-navy to-brand-gold text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex items-center justify-center border-2 border-white/50 backdrop-blur-sm group"
                     >
-                        <Sparkles className="w-8 h-8 group-hover:animate-pulse" />
+                        <BotMessageSquare className="w-7 h-7 group-hover:animate-pulse" />
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
@@ -441,7 +442,7 @@ export function EcoAssistant() {
                             <div className="flex items-center gap-4">
                                 <div className="relative">
                                     <div className="w-12 h-12 bg-brand-gold rounded-2xl flex items-center justify-center shadow-lg transform -rotate-6">
-                                        <Bot className="w-7 h-7 text-brand-navy" />
+                                        <BotMessageSquare className="w-6 h-6 text-brand-navy" />
                                     </div>
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-brand-navy animate-pulse" />
                                 </div>
@@ -452,6 +453,7 @@ export function EcoAssistant() {
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
+                                aria-label="Cerrar asistente virtual"
                                 className="p-2 hover:bg-white/10 rounded-xl transition-colors"
                             >
                                 <X className="w-5 h-5 text-brand-gold" />
@@ -551,6 +553,7 @@ export function EcoAssistant() {
                                 <button
                                     onClick={() => handleSend()}
                                     disabled={!input.trim() || loading}
+                                    aria-label="Enviar mensaje"
                                     className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-brand-navy text-brand-gold rounded-xl hover:bg-black transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:scale-100"
                                 >
                                     <Send className="w-4 h-4" />

@@ -35,9 +35,9 @@ export function CookieBanner() {
                     </div>
 
                     <div className="space-y-3 flex-1">
-                        <h4 className="text-xs font-bold text-brand-navy uppercase tracking-wider">
+                        <h3 className="text-xs font-bold text-brand-navy uppercase tracking-wider">
                             Privacidad & Datos
-                        </h4>
+                        </h3>
                         <p className="text-xs leading-relaxed text-brand-neutral">
                             Usamos cookies para mejorar tu experiencia y analizar el tráfico de este portafolio académico. ¿Aceptas?
                         </p>
@@ -60,6 +60,7 @@ export function CookieBanner() {
 
                     <button
                         onClick={() => setIsVisible(false)}
+                        aria-label="Cerrar aviso de cookies"
                         className="text-brand-neutral-light/40 hover:text-brand-navy transition-colors"
                     >
                         <X className="w-4 h-4" />

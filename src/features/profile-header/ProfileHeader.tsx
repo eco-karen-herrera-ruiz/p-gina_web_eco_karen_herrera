@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ProfileData } from '@/shared/types';
 import { MapPin, Mail, Linkedin, Github, Copy, Check, Award } from 'lucide-react';
 
@@ -20,10 +23,13 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
             <div className="flex flex-col items-center text-center space-y-6 relative z-10">
                 {/* Avatar */}
                 <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-[3px] border-brand-gold/50 shadow-gold-glow transition-all hover:scale-[1.02] duration-500">
-                    <img
+                    <Image
                         src={profile.avatarUrl}
                         alt={`Avatar de ${profile.name}`}
-                        className="w-full h-full object-cover object-top"
+                        fill
+                        sizes="(min-width: 768px) 160px, 128px"
+                        className="object-cover object-top"
+                        priority
                         onError={(e) => {
                             (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="%23C8963E" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
                         }}

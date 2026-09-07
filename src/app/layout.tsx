@@ -32,6 +32,13 @@ export const metadata: Metadata = {
         siteName: "Karen Herrera Ruiz",
         locale: "es_EC",
         type: "website",
+        images: [{ url: "/images/og-cover.png", width: 1200, height: 630, alt: "Karen Herrera Ruiz — Economista en Formación, UNEMI" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Karen Herrera Ruiz | Portafolio Profesional",
+        description: "Portafolio digital de Karen Herrera Ruiz, economista y analista de datos de la UNEMI.",
+        images: ["/images/og-cover.png"],
     },
     robots: {
         index: true,

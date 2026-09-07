@@ -5,10 +5,11 @@ export const designTokens = {
             navyLight: '#1A3447',
             gold: '#C8963E',
             goldLight: '#E8D5B0',
+            goldText: '#8B5E1F',
             white: '#FFFFFF',
             offWhite: '#F8F9FA',
             neutral: '#4A5568',
-            neutralLight: '#7B8A9B',
+            neutralLight: '#64748B',
         },
         background: {
             section: '#F8F9FA',

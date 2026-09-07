@@ -1,39 +1,12 @@
-'use client';
-
 import React from 'react';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { ProfileHeader } from '@/features/profile-header';
-import { useProfile } from '@/shared/hooks/useProfile';
-import { Loader2, Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2 } from 'lucide-react';
+import { ProfileService } from '@/shared/services/profileService';
+import { Target, Compass, TrendingUp, BarChart3, ArrowRight, Youtube, PlayCircle, CheckCircle2 } from 'lucide-react';
 import { YouTubeEmbed } from '@/shared/components/atoms';
 
-export default function Home() {
-    const { data: profile, loading, error } = useProfile();
-
-    if (loading) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-background">
-                <div className="flex flex-col items-center gap-4">
-                    <div className="w-10 h-10 rounded-full border-2 border-brand-navy border-t-brand-gold animate-spin" />
-                    <span className="text-sm text-brand-neutral font-medium">Cargando perfil...</span>
-                </div>
-            </div>
-        );
-    }
-
-    if (error || !profile) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-background text-center p-6">
-                <div className="max-w-md space-y-3">
-                    <div className="w-12 h-12 rounded-full bg-red-50 mx-auto flex items-center justify-center">
-                        <BarChart3 className="w-6 h-6 text-red-400" />
-                    </div>
-                    <h2 className="text-xl font-bold text-brand-navy">Error cargando perfil</h2>
-                    <p className="text-sm text-brand-neutral">{error?.message || 'Datos no encontrados'}</p>
-                </div>
-            </div>
-        );
-    }
+export default async function Home() {
+    const profile = await ProfileService.getProfile();
 
     return (
         <RootLayout>
@@ -78,13 +51,36 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Representación Estudiantil 2026 — campaign banner */}
+            <section className="py-4">
+                <div className="container mx-auto px-4 md:px-8">
+                    <a
+                        href="/representacion-estudiantil"
+                        className="group flex flex-col sm:flex-row items-center justify-between gap-4 bg-brand-navy rounded-2xl px-6 py-5 shadow-card hover:shadow-card-hover transition-all duration-300"
+                    >
+                        <div className="flex items-center gap-4 text-center sm:text-left">
+                            <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-widest text-brand-navy bg-brand-gold px-3 py-1.5 rounded-full">
+                                Votaciones 7–9 sept
+                            </span>
+                            <p className="text-white text-sm md:text-base font-semibold">
+                                Candidata a Representante Estudiantil 2026 — conoce mi propuesta
+                            </p>
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold group-hover:text-white transition-colors">
+                            Ver propuesta
+                            <ArrowRight className="w-4 h-4" />
+                        </span>
+                    </a>
+                </div>
+            </section>
+
             {/* Mission & Vision */}
             <section className="py-16 md:py-24 bg-white">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="text-center mb-14 md:mb-18 space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/10 rounded-full border border-brand-gold/20">
                             <Target className="w-3.5 h-3.5 text-brand-gold" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Identidad Estratégica</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Identidad Estratégica</span>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy tracking-tight">
                             Propósito y Proyección
@@ -107,7 +103,7 @@ export default function Home() {
                                 </p>
                                 <div className="flex items-center gap-2 pt-2">
                                     <div className="h-[2px] w-8 bg-brand-gold" />
-                                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-gold">Compromiso Digital</span>
+                                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-brand-goldText">Compromiso Digital</span>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +175,7 @@ export default function Home() {
                     <div className="text-center mb-12 space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/10 rounded-full border border-brand-gold/20">
                             <Youtube className="w-3.5 h-3.5 text-brand-gold" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">Canal Oficial</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText">Canal Oficial</span>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-navy tracking-tight">
                             Investigación y Desarrollo
@@ -202,7 +198,7 @@ export default function Home() {
                                         <PlayCircle className="w-5 h-5 text-brand-navy" />
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-brand-navy text-sm">Presentación de Proyecto</h4>
+                                        <h3 className="font-semibold text-brand-navy text-sm">Presentación de Proyecto</h3>
                                         <p className="text-xs text-brand-neutral-light">Metodologías cuantitativas aplicadas</p>
                                     </div>
                                 </div>

@@ -1,4 +1,7 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
 import { Mail, MapPin, Youtube, Linkedin, Github, Globe, ExternalLink, ShieldCheck, Facebook, ArrowUpRight, Menu, X } from 'lucide-react';
 import { CookieBanner } from '@/shared/components/molecules';
 import { EcoAssistant } from '@/features/assistant/components/AssistantChat';
@@ -7,7 +10,16 @@ interface RootLayoutProps {
     children: React.ReactNode;
 }
 
+const NAV_LINKS = [
+    { href: '/', label: 'Inicio' },
+    { href: '/about', label: 'Sobre Mí' },
+    { href: '/publicaciones', label: 'Publicaciones' },
+    { href: '/actualidad-economica', label: 'Análisis' },
+];
+
 export function RootLayout({ children }: RootLayoutProps) {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-background font-sans text-foreground antialiased flex flex-col">
             {/* Header — Executive Professional */}
@@ -15,27 +27,22 @@ export function RootLayout({ children }: RootLayoutProps) {
                 <div className="container flex items-center justify-between h-16 md:h-18">
                     {/* Logo */}
                     <a className="flex items-center gap-3 group" href="/">
-                        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-brand-navy group-hover:bg-brand-navy-light transition-colors duration-300">
-                            <img src="/images/logo.png" alt="KH" className="h-8 w-auto object-contain brightness-0 invert" />
+                        <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-brand-navy group-hover:bg-brand-navy-light transition-colors duration-300 p-1.5">
+                            <Image src="/images/logo.png" alt="Eco.KH" fill sizes="48px" className="object-contain" priority />
                         </div>
                         <div className="flex flex-col leading-tight">
                             <span className="text-sm md:text-base font-bold text-brand-navy tracking-tight">
                                 Karen Herrera Ruiz
                             </span>
-                            <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-brand-gold">
+                            <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-brand-goldText">
                                 Economic Strategy
                             </span>
                         </div>
                     </a>
 
                     {/* Navigation */}
-                    <nav className="hidden md:flex items-center gap-1">
-                        {[
-                            { href: '/', label: 'Inicio' },
-                            { href: '/about', label: 'Sobre Mí' },
-                            { href: '/publicaciones', label: 'Publicaciones' },
-                            { href: '/actualidad-economica', label: 'Análisis' },
-                        ].map((link) => (
+                    <nav className="hidden lg:flex items-center gap-1">
+                        {NAV_LINKS.map((link) => (
                             <a
                                 key={link.href}
                                 href={link.href}
@@ -46,19 +53,61 @@ export function RootLayout({ children }: RootLayoutProps) {
                             </a>
                         ))}
                         <a
+                            href="/representacion-estudiantil"
+                            className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-navy rounded-lg hover:bg-brand-gold-light transition-colors duration-200"
+                        >
+                            Representación 2026
+                        </a>
+                        <a
                             href="/about"
-                            className="ml-3 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg hover:bg-brand-navy-light transition-colors duration-200"
+                            className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg hover:bg-brand-navy-light transition-colors duration-200"
                         >
                             Contacto
                             <ArrowUpRight className="w-3 h-3" />
                         </a>
                     </nav>
 
-                    {/* Mobile menu trigger (simplified) */}
-                    <button className="md:hidden p-2 text-brand-navy">
-                        <Menu className="w-5 h-5" />
+                    {/* Mobile/tablet menu trigger */}
+                    <button
+                        onClick={() => setIsMobileMenuOpen((open) => !open)}
+                        aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                        aria-expanded={isMobileMenuOpen}
+                        className="lg:hidden p-2 text-brand-navy"
+                    >
+                        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
                 </div>
+
+                {/* Mobile/tablet menu panel */}
+                {isMobileMenuOpen && (
+                    <nav className="lg:hidden border-t border-border/50 bg-white px-4 py-4 flex flex-col gap-1">
+                        {NAV_LINKS.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="px-3 py-2.5 rounded-lg text-sm font-semibold text-brand-neutral hover:text-brand-navy hover:bg-background transition-colors duration-200"
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                        <a
+                            href="/representacion-estudiantil"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="mt-2 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-navy rounded-lg"
+                        >
+                            Representación 2026
+                        </a>
+                        <a
+                            href="/about"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider bg-brand-navy text-white rounded-lg"
+                        >
+                            Contacto
+                            <ArrowUpRight className="w-3 h-3" />
+                        </a>
+                    </nav>
+                )}
             </header>
 
             <main className="flex-1 w-full">
@@ -79,8 +128,8 @@ export function RootLayout({ children }: RootLayoutProps) {
                         {/* Column 1: Brand — spans 4 */}
                         <div className="lg:col-span-4 space-y-5">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-brand-gold flex items-center justify-center">
-                                    <img src="/images/logo.png" alt="Logo" className="h-7 w-auto object-contain brightness-0" />
+                                <div className="relative w-12 h-12 rounded-lg bg-white flex items-center justify-center p-1.5">
+                                    <Image src="/images/logo.png" alt="Eco.KH" fill sizes="48px" className="object-contain" />
                                 </div>
                                 <div className="flex flex-col leading-tight">
                                     <span className="text-lg font-heading font-bold tracking-tight">
@@ -97,16 +146,17 @@ export function RootLayout({ children }: RootLayoutProps) {
                             {/* Social icons */}
                             <div className="flex items-center gap-3 pt-2">
                                 {[
-                                    { href: 'https://www.linkedin.com/in/dayanna-herrera-3a912b38a', icon: Linkedin },
-                                    { href: 'https://github.com/eco-karen-herrera-ruiz', icon: Github },
-                                    { href: 'https://facebook.com/profile.php?id=61588392219336', icon: Facebook },
-                                    { href: 'https://youtube.com/@eco_karen_herrera?si=83oczHeUpEswhcKm', icon: Youtube },
-                                ].map(({ href, icon: Icon }) => (
+                                    { href: 'https://www.linkedin.com/in/dayanna-herrera-3a912b38a', icon: Linkedin, label: 'LinkedIn' },
+                                    { href: 'https://github.com/eco-karen-herrera-ruiz', icon: Github, label: 'GitHub' },
+                                    { href: 'https://facebook.com/profile.php?id=61588392219336', icon: Facebook, label: 'Facebook' },
+                                    { href: 'https://youtube.com/@eco_karen_herrera?si=83oczHeUpEswhcKm', icon: Youtube, label: 'YouTube' },
+                                ].map(({ href, icon: Icon, label }) => (
                                     <a
                                         key={href}
                                         href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label={label}
                                         className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-brand-gold hover:border-brand-gold/30 hover:bg-brand-gold/10 transition-all duration-200"
                                     >
                                         <Icon className="w-3.5 h-3.5" />
@@ -124,6 +174,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                                 {[
                                     { href: '/', label: 'Inicio' },
                                     { href: '/about', label: 'Sobre Mí' },
+                                    { href: '/representacion-estudiantil', label: 'Representación 2026' },
                                     { href: '/publicaciones', label: 'Publicaciones' },
                                     { href: '/actualidad-economica', label: 'Análisis Económico' },
                                 ].map(({ href, label }) => (
@@ -198,14 +249,14 @@ export function RootLayout({ children }: RootLayoutProps) {
 
                     {/* Bottom Bar */}
                     <div className="mt-14 pt-7 border-t border-white/8 flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-5 text-[10px] font-medium uppercase tracking-wider text-white/30">
-                            <a href="/legal/aviso-legal" className="hover:text-white/60 transition-colors">Aviso Legal</a>
-                            <span className="text-white/10">·</span>
-                            <a href="/legal/privacidad" className="hover:text-white/60 transition-colors">Privacidad</a>
-                            <span className="text-white/10">·</span>
-                            <a href="/legal/cookies" className="hover:text-white/60 transition-colors">Cookies</a>
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-5 text-[10px] font-medium uppercase tracking-wider text-white/70">
+                            <a href="/legal/aviso-legal" className="hover:text-white transition-colors">Aviso Legal</a>
+                            <span className="text-white/20">·</span>
+                            <a href="/legal/privacidad" className="hover:text-white transition-colors">Privacidad</a>
+                            <span className="text-white/20">·</span>
+                            <a href="/legal/cookies" className="hover:text-white transition-colors">Cookies</a>
                         </div>
-                        <p className="text-[10px] font-medium text-white/25">
+                        <p className="text-[10px] font-medium text-white/60">
                             © {new Date().getFullYear()} Karen Herrera Ruiz · Todos los derechos reservados
                         </p>
                     </div>
