@@ -10,21 +10,25 @@ import { useShare } from '@/shared/hooks/useShare';
 const moreVideos = [
     {
         url: 'https://www.facebook.com/share/v/1DJWpWdfvv/',
+        thumbnail: '/images/fb-1DJWpWdfvv.jpg',
         title: 'El Ciclo Contable, paso a paso',
         desc: 'Del Balance Inicial a los Estados Financieros: el proceso completo que separa a quienes entienden de finanzas de quienes solo memorizan para el examen.',
     },
     {
         url: 'https://www.facebook.com/share/v/1DU7E6NoeD/',
+        thumbnail: '/images/fb-1DU7E6NoeD.jpg',
         title: 'Microeconomía, Macroeconomía y Elasticidad',
         desc: 'Una explicación clara y con enfoque humano de cómo estos conceptos moldean las decisiones económicas del día a día.',
     },
     {
         url: 'https://www.facebook.com/share/v/1c3bxfgzMj/',
+        thumbnail: '/images/fb-1c3bxfgzMj.jpg',
         title: 'Epistemología e Investigación Científica',
         desc: 'Por qué no existe una verdad científica absoluta, y cómo ese principio debe guiar la investigación económica seria.',
     },
     {
         url: 'https://www.facebook.com/share/v/1FDzS6wUtR/',
+        thumbnail: '/images/fb-1FDzS6wUtR.jpg',
         title: 'Análisis y Reflexión Económica',
         desc: 'Más contenido en video sobre economía, datos y desarrollo.',
     },
@@ -156,7 +160,7 @@ export default function ActualidadEconomicaPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                             {moreVideos.map((video) => (
                                 <div key={video.url} className="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover card-hover border border-border/40">
-                                    <FacebookVideoCard videoUrl={video.url} title={video.title} />
+                                    <FacebookVideoCard videoUrl={video.url} title={video.title} thumbnail={video.thumbnail} />
                                     <div className="p-5 space-y-2">
                                         <h3 className="font-heading font-bold text-brand-navy text-sm leading-snug">{video.title}</h3>
                                         <p className="text-xs text-brand-neutral-light leading-relaxed">{video.desc}</p>
