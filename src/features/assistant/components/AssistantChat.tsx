@@ -4,9 +4,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Mic, MicOff, Volume2, VolumeX, Send, X, Zap } from 'lucide-react';
+import { Mic, MicOff, Volume2, VolumeX, Send, X, Zap, Maximize2, Minimize2 } from 'lucide-react';
 import { stripMarkdown } from '@/shared/utils/stripMarkdown';
 import { ChatbotIcon } from '@/shared/components/atoms/ChatbotIcon';
+import { VoiceOrb } from '@/shared/components/atoms/VoiceOrb';
+import { cn } from '@/shared/utils/cn';
 
 interface Message {
     role: 'user' | 'assistant';
@@ -16,6 +18,7 @@ interface Message {
 export function EcoAssistant() {
     const [mounted, setMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isMaximized, setIsMaximized] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         { role: 'assistant', content: '¡Hola! Soy EcoAssistant. ¿En qué puedo ayudarte hoy con respecto a la economía o el perfil de Karen?' }
     ]);
@@ -36,11 +39,33 @@ export function EcoAssistant() {
     const audioContextRef = useRef<AudioContext | null>(null);
     const analyserRef = useRef<AnalyserNode | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
+    const playbackCtxRef = useRef<AudioContext | null>(null);
+    const playbackAnalyserRef = useRef<AnalyserNode | null>(null);
 
     // HYDRATION GUARD & AUDIO ANALYZER SETUP
     useEffect(() => {
         setMounted(true);
         audioRef.current = new Audio();
+
+        // Wire the TTS <audio> element through its own analyser so the
+        // "speaking" orb can react to the actual voice waveform. Must be
+        // set up exactly once per element (createMediaElementSource throws
+        // on a second call) and re-routed to destination or the audio goes
+        // silent, since the source node captures the element's output.
+        try {
+            const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext;
+            const playbackCtx = new AudioContextClass();
+            const source = playbackCtx.createMediaElementSource(audioRef.current);
+            const playbackAnalyser = playbackCtx.createAnalyser();
+            playbackAnalyser.fftSize = 128;
+            playbackAnalyser.smoothingTimeConstant = 0.6;
+            source.connect(playbackAnalyser);
+            playbackAnalyser.connect(playbackCtx.destination);
+            playbackCtxRef.current = playbackCtx;
+            playbackAnalyserRef.current = playbackAnalyser;
+        } catch (e) {
+            console.warn('No se pudo inicializar el analizador de voz para el orbe:', e);
+        }
 
         const initRecognition = () => {
             if (typeof window !== 'undefined' && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
@@ -91,6 +116,7 @@ export function EcoAssistant() {
         return () => {
             stopAudioAnalysis();
             if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+            playbackCtxRef.current?.close().catch(() => {});
         };
     }, [isHandsFree]);
 
@@ -109,7 +135,7 @@ export function EcoAssistant() {
 
             const source = audioContext.createMediaStreamSource(stream);
             source.connect(analyser);
-            analyser.fftSize = 64;
+            analyser.fftSize = 128;
 
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
@@ -239,6 +265,12 @@ export function EcoAssistant() {
                     reject(e);
                 };
 
+                // Browsers suspend a freshly-created AudioContext until a user
+                // gesture resumes it — resume defensively on every chunk.
+                if (playbackCtxRef.current?.state === 'suspended') {
+                    playbackCtxRef.current.resume().catch(() => {});
+                }
+
                 const playPromise = audioRef.current.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(error => {
@@ -355,6 +387,14 @@ export function EcoAssistant() {
 
     if (!mounted) return null;
 
+    // Jarvis voice console: while hands-free mode is on, the orb cycles between
+    // "listening" (reading the mic analyser) and "speaking" (reading the TTS
+    // playback analyser) depending on whether a response is currently being read aloud.
+    const orbMode: 'idle' | 'listening' | 'speaking' = isProcessingQueue ? 'speaking' : (isHandsFree ? 'listening' : 'idle');
+    const orbAnalyser = orbMode === 'speaking' ? playbackAnalyserRef.current : orbMode === 'listening' ? analyserRef.current : null;
+    const orbActive = orbMode !== 'idle';
+    const showVoiceConsole = isHandsFree;
+
     return (
         <div className="fixed bottom-8 right-8 z-[100] font-sans">
             <AnimatePresence>
@@ -432,11 +472,17 @@ export function EcoAssistant() {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        layout
                         initial={{ opacity: 0, y: 100, scale: 0.8, filter: 'blur(10px)' }}
                         animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                         exit={{ opacity: 0, y: 100, scale: 0.8, filter: 'blur(10px)' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="w-[400px] h-[600px] bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(15,41,38,0.2)] flex flex-col overflow-hidden"
+                        transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+                        className={cn(
+                            "relative bg-white/80 backdrop-blur-2xl border border-white/60 shadow-[0_32px_64px_-16px_rgba(15,41,38,0.2)] flex flex-col overflow-hidden",
+                            isMaximized
+                                ? "fixed inset-0 w-screen h-screen rounded-none"
+                                : "w-[min(400px,calc(100vw-4rem))] h-[min(600px,calc(100vh-6rem))] rounded-[2.5rem]"
+                        )}
                     >
                         {/* Header */}
                         <div className="px-8 py-6 bg-gradient-to-r from-brand-navy to-brand-navy/90 text-white flex items-center justify-between">
@@ -452,14 +498,30 @@ export function EcoAssistant() {
                                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold/80 mt-1">AI Intelligence v3.0</span>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                aria-label="Cerrar asistente virtual"
-                                className="p-2 hover:bg-white/10 rounded-xl transition-colors"
-                            >
-                                <X className="w-5 h-5 text-brand-gold" />
-                            </button>
+                            <div className="flex items-center gap-1">
+                                <button
+                                    onClick={() => setIsMaximized(prev => !prev)}
+                                    aria-label={isMaximized ? "Minimizar asistente virtual" : "Maximizar asistente virtual a pantalla completa"}
+                                    className="p-2 hover:bg-white/10 rounded-xl transition-colors"
+                                >
+                                    {isMaximized ? (
+                                        <Minimize2 className="w-[18px] h-[18px] text-brand-gold" />
+                                    ) : (
+                                        <Maximize2 className="w-[18px] h-[18px] text-brand-gold" />
+                                    )}
+                                </button>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    aria-label="Cerrar asistente virtual"
+                                    className="p-2 hover:bg-white/10 rounded-xl transition-colors"
+                                >
+                                    <X className="w-5 h-5 text-brand-gold" />
+                                </button>
+                            </div>
                         </div>
+
+                        {/* Body + Input share a relative wrapper so the fullscreen voice console can overlay just this area */}
+                        <div className="relative flex-1 flex flex-col overflow-hidden">
 
                         {/* Messages Body */}
                         <div
@@ -509,12 +571,12 @@ export function EcoAssistant() {
                                     <span className="text-[10px] font-bold text-brand-goldText uppercase tracking-widest animate-pulse">Analizando...</span>
                                 </div>
                             )}
-                            {isLoadingVoice && (
+                            {!showVoiceConsole && isProcessingQueue && (
                                 <div className="flex gap-2 pl-4 items-center">
-                                    <div className="w-8 h-8 bg-brand-navy/10 rounded-full flex items-center justify-center">
-                                        <Volume2 className="w-4 h-4 text-brand-navy animate-pulse" />
+                                    <div className="w-8 h-8 -m-1 flex items-center justify-center">
+                                        <VoiceOrb analyser={playbackAnalyserRef.current} active mode="speaking" size={32} />
                                     </div>
-                                    <span className="text-[10px] font-bold text-brand-navy uppercase tracking-widest animate-pulse">Generando voz...</span>
+                                    <span className="text-[10px] font-bold text-brand-navy uppercase tracking-widest animate-pulse">Hablando...</span>
                                 </div>
                             )}
                         </div>
@@ -563,6 +625,49 @@ export function EcoAssistant() {
                             <div className="mt-4 text-[9px] text-center font-bold text-brand-navy/40 uppercase tracking-widest">
                                 Powered by GPT-OSS & Groq
                             </div>
+                        </div>
+
+                        {/* Jarvis-style fullscreen voice console — covers the body while hands-free mode is on */}
+                        <AnimatePresence>
+                            {showVoiceConsole && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-brand-navy/[0.97] backdrop-blur-xl"
+                                >
+                                    <div
+                                        aria-hidden="true"
+                                        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                                        style={{ backgroundImage: 'repeating-linear-gradient(0deg, #C8963E 0px, transparent 1px, transparent 4px)' }}
+                                    />
+
+                                    <VoiceOrb
+                                        analyser={orbAnalyser}
+                                        active={orbActive}
+                                        mode={orbMode}
+                                        size={isMaximized ? 320 : 176}
+                                    />
+
+                                    <div className="mt-8 text-center space-y-3 px-8">
+                                        <p className="text-brand-gold text-xs font-black uppercase tracking-[0.4em] animate-pulse">
+                                            {orbMode === 'speaking' ? 'Transmitiendo respuesta' : 'Escuchando'}
+                                        </p>
+                                        {orbMode === 'listening' && input && (
+                                            <p className="text-white/70 text-sm max-w-sm italic">"{input}"</p>
+                                        )}
+                                    </div>
+
+                                    <button
+                                        onClick={toggleVoice}
+                                        className="mt-10 flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white/70 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 hover:border-white/40 transition-all"
+                                    >
+                                        <MicOff className="w-4 h-4" />
+                                        Salir del modo voz
+                                    </button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                         </div>
                     </motion.div>
                 )}
