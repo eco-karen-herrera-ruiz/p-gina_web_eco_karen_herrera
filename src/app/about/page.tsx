@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import { Sprout, TrendingUp, Heart, Quote, ArrowRight } from 'lucide-react';
 
@@ -43,6 +44,24 @@ export default function AboutPage() {
                             <div className="p-8 md:p-14 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
                                 {/* Sidebar */}
                                 <div className="lg:col-span-4 space-y-8">
+                                    {/* Editorial portrait */}
+                                    <div className="relative -mt-28 md:-mt-36 mb-2">
+                                        <div className="relative aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-[0_24px_48px_-12px_rgba(15,30,45,0.35)] border-4 border-white">
+                                            <Image
+                                                src="/images/karen-herrera-avatar.png"
+                                                alt="Karen Dayanna Herrera Ruiz"
+                                                fill
+                                                sizes="(min-width: 1024px) 340px, 90vw"
+                                                className="object-cover object-top"
+                                                priority
+                                            />
+                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-navy via-brand-navy/70 to-transparent pt-14 pb-4 px-5">
+                                                <p className="text-white font-heading font-bold text-lg leading-tight italic">Karen Herrera Ruiz</p>
+                                                <p className="text-brand-gold text-[10px] font-bold uppercase tracking-[0.15em] mt-0.5">Palenque, Los Ríos → UNEMI</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-3">
                                         <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-goldText border-b border-border pb-2">Origen</h3>
                                         <p className="text-brand-navy font-semibold">Palenque, Provincia de Los Ríos</p>

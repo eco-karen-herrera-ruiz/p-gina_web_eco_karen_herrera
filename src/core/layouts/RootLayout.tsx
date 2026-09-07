@@ -27,7 +27,7 @@ export function RootLayout({ children }: RootLayoutProps) {
                 <div className="container flex items-center justify-between h-16 md:h-18">
                     {/* Logo */}
                     <a className="flex items-center gap-3 group" href="/">
-                        <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-white border border-border/60 shadow-sm group-hover:border-brand-gold/40 transition-colors duration-300 p-1.5">
+                        <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-white border-2 border-brand-gold shadow-[0_0_0_3px_rgba(200,150,62,0.15),0_0_18px_2px_rgba(200,150,62,0.45)] group-hover:shadow-[0_0_0_3px_rgba(200,150,62,0.25),0_0_26px_4px_rgba(200,150,62,0.65)] transition-shadow duration-300 p-1.5">
                             <Image src="/images/logo.png" alt="Eco.KH" fill sizes="48px" className="object-contain" priority />
                         </div>
                         <div className="flex flex-col leading-tight">

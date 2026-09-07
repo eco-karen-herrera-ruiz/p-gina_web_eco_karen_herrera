@@ -4,8 +4,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Mic, MicOff, Volume2, VolumeX, Send, X, BotMessageSquare, Zap } from 'lucide-react';
+import { Mic, MicOff, Volume2, VolumeX, Send, X, Zap } from 'lucide-react';
 import { stripMarkdown } from '@/shared/utils/stripMarkdown';
+import { ChatbotIcon } from '@/shared/components/atoms/ChatbotIcon';
 
 interface Message {
     role: 'user' | 'assistant';
@@ -368,7 +369,7 @@ export function EcoAssistant() {
                         aria-label="Abrir asistente virtual EcoAssistant"
                         className="h-16 w-16 bg-gradient-to-tr from-brand-navy to-brand-gold text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex items-center justify-center border-2 border-white/50 backdrop-blur-sm group"
                     >
-                        <BotMessageSquare className="w-7 h-7 group-hover:animate-pulse" />
+                        <ChatbotIcon className="w-7 h-7 group-hover:animate-pulse" />
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: [0, 1, 0], scale: [0.5, 1.2, 0.5] }}
@@ -442,7 +443,7 @@ export function EcoAssistant() {
                             <div className="flex items-center gap-4">
                                 <div className="relative">
                                     <div className="w-12 h-12 bg-brand-gold rounded-2xl flex items-center justify-center shadow-lg transform -rotate-6">
-                                        <BotMessageSquare className="w-6 h-6 text-brand-navy" />
+                                        <ChatbotIcon className="w-6 h-6 text-brand-navy" />
                                     </div>
                                     <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-brand-navy animate-pulse" />
                                 </div>
