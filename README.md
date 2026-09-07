@@ -1,84 +1,131 @@
-# Econ-Digital Identity Framework - Karen Herrera Ruiz
+<div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css)
-![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?logo=netlify)
-![Security](https://img.shields.io/badge/Security-Strict-green)
+<img src="./public/images/og-cover.png" alt="Karen Herrera Ruiz — Portafolio Profesional" width="100%" />
 
-Portafolio profesional para **Karen Dayanna Herrera Ruiz** – Economista y Especialista en Datos de la UNEMI. Estética sobria, corporativa, inspirada en LinkedIn y Stripe Docs, construida para ser segura, performante y accesible.
+<br/>
 
-## 🏗️ Árbol de Directorios y Arquitectura
+### Portafolio digital y centro de campaña estudiantil de **Karen Dayanna Herrera Ruiz**
+Economista en formación · UNEMI · Fundadora, EcoTech Herrera & Pérez S.A.S.
 
-El proyecto emplea una estricta **Feature-Based Architecture**.
+<br/>
+
+[![Sitio en vivo](https://img.shields.io/badge/Sitio_en_vivo-ecokarenherrera.dpdns.org-0F1E2D?style=for-the-badge&logo=vercel&logoColor=C8963E)](https://ecokarenherrera.dpdns.org)
+
+<br/>
+
+![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Docker](https://img.shields.io/badge/Portable-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Lighthouse Accessibility](https://img.shields.io/badge/Lighthouse_a11y-100%2F100-2F6B4F?style=flat-square&logo=lighthouse&logoColor=white)
+![License](https://img.shields.io/badge/License-Privado-8A93A0?style=flat-square)
+
+</div>
+
+<br/>
+
+## Sobre el proyecto
+
+Sitio corporativo construido con **Next.js 14 (App Router)**, diseñado con una estética ejecutiva sobria (navy `#0F1E2D` + dorado `#C8963E`) y una arquitectura por *features*. Cumple una doble función: portafolio profesional de datos/economía, y plataforma de campaña para la elección de representante estudiantil de la UNEMI.
+
+No es una maqueta — cada métrica de esta tabla se midió con Lighthouse contra el build de producción real, no contra el servidor de desarrollo:
+
+| Métrica | Resultado |
+|---|---|
+| Accesibilidad (Lighthouse) | **100 / 100** |
+| Largest Contentful Paint | **2.6s** (antes: 5.1s) |
+| Peso de página (home) | **1.5 MB** (antes: 3.9 MB) |
+| Contraste WCAG AA | Cumple en todo el sitio |
+| Responsive | Verificado en 375px / 768px / 1440px |
+
+## Características
+
+- 🎯 **Portafolio ejecutivo** — trayectoria, formación, publicaciones y análisis económico
+- 🗳️ **Representación Estudiantil 2026** — plataforma de candidatura con propuestas concretas
+- 🤖 **EcoAssistant** — chatbot conversacional (Groq/Llama 3.1) con modo de voz y texto a voz
+- 🔒 **CSP estricto con nonce por request** — sin debilitar seguridad para lograr compatibilidad
+- 📱 **Menú móvil real** — navegación completa en cualquier tamaño de pantalla
+- 🌐 **SEO** — sitemap, robots.txt y Open Graph dinámicos
+
+## Arquitectura
+
+Organización por *features*, no por tipo de archivo — cada dominio de negocio es autocontenido.
 
 ```text
 src/
-├── app/                  # Next.js App Router (Páginas y UI global)
-│   ├── globals.css       # Variables CSS de Shadcn y Tailwind
-│   ├── layout.tsx        # Inyección de fuentes (DM Sans, Playfair, DM Mono)
-│   └── page.tsx          # Integración principal de features
+├── app/                        # Next.js App Router
+│   ├── page.tsx                 # Home (Server Component)
+│   ├── about/                    # Perfil extendido
+│   ├── representacion-estudiantil/ # Candidatura 2026
+│   ├── publicaciones/            # Artículos y análisis
+│   ├── actualidad-economica/     # Contenido económico
+│   ├── legal/                    # Aviso legal · privacidad · cookies
+│   ├── api/                      # Rutas /chat y /voice (EcoAssistant)
+│   ├── sitemap.ts · robots.ts    # SEO dinámico
+│   └── icon.svg                  # Favicon
 │
-├── core/                 # Configuraciones globales y wrappers
-│   ├── config/           # Validaciones (env.ts con Zod) y Headings CSP
-│   ├── layouts/          # RootLayout, Navbar global y Footer
-│   └── theme/            # design-tokens.ts (Colores UNEMI, tipografía)
+├── core/
+│   ├── config/                  # Validación de entorno (Zod)
+│   ├── layouts/                  # RootLayout — header, footer, menú móvil
+│   └── theme/                    # Tokens de diseño (color, tipografía)
 │
-├── features/             # Módulos de negocio independientes
-│   ├── economic-insights/# Dashboard de KPIs con minigráficos (Recharts)
-│   ├── soft-skills-dashboard/ # Soft-Skills Analytics Framework (SSAF)
-│   ├── experience-timeline/ # Render de trayectoria
-│   └── profile-header/   # Hero principal, avatar, metadata y botones
+├── features/
+│   ├── assistant/                # EcoAssistant (chat + voz)
+│   └── profile-header/           # Hero, avatar, CTAs
 │
-└── shared/               # Código reutilizable agnóstico a features
-    ├── components/       # Componentes atómicos e UI
-    │   ├── atoms/        # Button (variantes con CVA)
-    │   └── molecules/    # Card compuesto (Header, Title, Content)
-    ├── hooks/            # Lógica (useProfile.ts para datos, useSafeRender)
-    ├── services/         # Inyección de dependencias (API/Mocks)
-    ├── types/            # Tipado estricto global (interfaces)
-    └── utils/            # Utilidades generales (sanitize.ts DOMPurify)
+├── shared/
+│   ├── components/               # Atoms · Molecules
+│   ├── hooks/                    # useShare, useSafeRender…
+│   ├── services/                 # ProfileService (inyectable)
+│   └── utils/                    # sanitize.ts (DOMPurify), stripMarkdown.ts
+│
+└── middleware.ts                 # CSP con nonce por request
 ```
 
-## 🔒 Security-First Approach
+## Seguridad
 
-1. **Prevención XSS**: Todo el contenido dinámico del CMS / API debe pasar por la función `sanitize()` (`src/shared/utils/sanitize.ts`) basada en `isomorphic-dompurify`.
-2. **CSP Estricto**: `next.config.js` y `netlify.toml` inyectan headers robustos (HSTS, DENY en Frame Options, nosniff, etc.).
-3. **Validación de Entorno**: `src/core/config/env.ts` usa `Zod` para garantizar que la app no inicie sin las variables vitales y seguras en tiempo de ejecución.
+| Capa | Implementación |
+|---|---|
+| CSP | Nonce único por request vía middleware — no usa `unsafe-inline` |
+| Cabeceras | HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy |
+| Sanitización | Todo HTML dinámico pasa por `isomorphic-dompurify` |
+| Entorno | `env.ts` valida variables con Zod antes de arrancar |
+| Secretos | Ninguno en el repositorio — gestionados vía variables de entorno en Vercel |
 
-## 📊 Soft-Skills Analytics Framework (SSAF)
+> **Nota honesta:** esto es una configuración de seguridad verificada, no un pentest formal certificado. Si tu proyecto maneja datos sensibles, contrata una auditoría con una firma certificada.
 
-Incluye un módulo de analítica cuantitativa enfocado en competencias blandas:
-- **Radar de Análisis y Síntesis**
-- **Barras de Progreso de Resolución de Problemas**
-- **Dashboard de Sinergia y Comunicación**
-- **Termómetro de Pensamiento Crítico**
-- **Mapa de Alcance Globalizado** (vía `react-simple-maps`)
+## Empezar en local
 
-## 🚀 Instalación y Despliegue
-
-### Entorno de Desarrollo
-
-Requisitos: Node.js 18+
+**Requisitos:** Node.js 20+
 
 ```bash
-git clone <repository-url>
-cd econdigital-identity
+git clone https://github.com/eco-karen-herrera-ruiz/p-gina_web_eco_karen_herrera.git
+cd p-gina_web_eco_karen_herrera
 npm install
 npm run dev
 ```
 
-La aplicación correrá en `http://localhost:3000`.
+Abre [http://localhost:3000](http://localhost:3000).
 
-### Despliegue en Netlify
+### Con Docker
 
-El proyecto incluye el archivo `netlify.toml` configurado para un deploy fácil.
-1. Conecta el repositorio a Netlify.
-2. Netlify automáticamente detectará `npm run build` como comando de construcción y `.next` como directorio de publicación gracias al plugin de Next.js.
-3. Los security headers están definidos directamente en la capa de CDN para mayor rendimiento.
+```bash
+docker compose up -d
+```
 
-## 📋 Principios SOLID Aplicados
+Levanta la build `standalone` de Next.js en el puerto `3006`.
 
-- **Single Responsibility**: `ProfileHeader` solo se encarga de UI; el request de datos ocurre vía hook `useProfile`.
-- **Open/Closed**: Atomos como `Button` extienden a través del prop `variant` y `size` y clases CSS gracias a `cva`.
-- **Dependency Inversion**: `Home` en `page.tsx` no se acopla a una API estática. Utiliza `ProfileService` inyectado mediante hook.
+## Despliegue
+
+Desplegado en **Vercel** con integración continua desde `main`. El `next.config.js` detecta el entorno (`process.env.VERCEL`) para omitir `output: 'standalone'` en Vercel (que empaqueta funciones por su cuenta) y activarlo solo para la imagen Docker — mismo código, dos targets de despliegue.
+
+## Stack técnico
+
+`Next.js 14` · `TypeScript` · `Tailwind CSS` · `Framer Motion` · `Zod` · `isomorphic-dompurify` · `Groq (Llama 3.1)` · `Vercel` · `Docker`
+
+---
+
+<div align="center">
+<sub>Construido por Karen Dayanna Herrera Ruiz — Economía, UNEMI · <a href="https://github.com/eco-karen-herrera-ruiz">@eco-karen-herrera-ruiz</a></sub>
+</div>
