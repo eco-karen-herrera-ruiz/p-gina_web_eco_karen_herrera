@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { RootLayout } from '@/core/layouts/RootLayout';
 import {
     Vote,
@@ -34,6 +35,12 @@ const propuestas = [
     },
 ];
 
+const stats = [
+    { value: '1°', label: 'Posición' },
+    { value: '97.83', label: 'Promedio' },
+    { value: '7–9', label: 'Sept · Vota' },
+];
+
 const pilares = [
     {
         icon: Award,
@@ -62,9 +69,6 @@ export default function RepresentacionEstudiantilPage() {
                     <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
 
                     <div className="container mx-auto px-4 md:px-8 relative z-10 text-center space-y-5 max-w-3xl">
-                        <div className="inline-flex p-3 bg-white/10 rounded-2xl border border-white/10 mb-2">
-                            <Vote className="w-8 h-8 text-brand-gold" />
-                        </div>
                         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
                             Proceso de Elección · Representante Estudiantil · UNEMI
                         </p>
@@ -75,13 +79,58 @@ export default function RepresentacionEstudiantilPage() {
                         <p className="text-white/70 text-base md:text-lg leading-relaxed">
                             Candidatura a representante estudiantil, 2do nivel C2. Una propuesta construida sobre disciplina académica, organización y trato respetuoso — no sobre promesas vacías.
                         </p>
-                        <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full border border-white/10 text-xs font-bold uppercase tracking-wider">
-                                <Calendar className="w-3.5 h-3.5 text-brand-gold" />
-                                Votaciones: 7 – 9 de septiembre
-                            </div>
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-gold/15 rounded-full border border-brand-gold/30 text-xs font-bold uppercase tracking-wider text-brand-gold">
-                                Posición de candidatura: 1 · Promedio 97.83
+                    </div>
+
+                    {/* Profile panel */}
+                    <div className="container mx-auto px-4 md:px-8 relative z-10 mt-10">
+                        <div className="relative bg-white/[0.06] border border-white/10 rounded-3xl overflow-hidden max-w-5xl mx-auto">
+                            <div className="p-6 md:p-9">
+                                <div className="flex flex-col lg:flex-row lg:items-center gap-8">
+                                    <div className="flex items-center gap-4 lg:gap-5">
+                                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-brand-gold/60 shrink-0">
+                                            <Image
+                                                src="/images/karen-herrera-avatar.png"
+                                                alt="Karen Herrera Ruiz"
+                                                fill
+                                                sizes="96px"
+                                                className="object-cover object-top"
+                                                priority
+                                            />
+                                        </div>
+                                        <div className="space-y-1.5 text-left">
+                                            <div className="flex items-center gap-1.5">
+                                                <Vote className="w-3.5 h-3.5 text-brand-gold" />
+                                                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold">Candidatura 2026</span>
+                                            </div>
+                                            <h2 className="text-white text-xl md:text-2xl font-heading font-bold tracking-tight leading-snug">
+                                                Karen Herrera Ruiz
+                                            </h2>
+                                            <p className="text-white/50 text-[10px] font-semibold uppercase tracking-wider">
+                                                Candidata · 2do Nivel C2
+                                            </p>
+                                            <div className="inline-flex items-center gap-2 bg-white/10 rounded-lg pl-1 pr-2.5 py-1 mt-1">
+                                                <div className="relative w-5 h-5 rounded overflow-hidden shrink-0">
+                                                    <Image src="/images/UNEMI.jpg" alt="UNEMI" fill sizes="20px" className="object-cover" />
+                                                </div>
+                                                <span className="text-white/70 text-[9px] font-bold uppercase tracking-wider">Universidad Estatal de Milagro</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex-1 grid grid-cols-3 gap-3">
+                                        {stats.map((stat) => (
+                                            <div key={stat.label} className="bg-black/20 border border-white/10 rounded-2xl px-3 py-3 md:py-4 text-center">
+                                                <div className="text-white text-xl md:text-2xl font-heading font-bold">{stat.value}</div>
+                                                <div className="text-white/50 text-[9px] font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider text-white/60">
+                                    <Calendar className="w-3.5 h-3.5 text-brand-gold" />
+                                    Votaciones: 7 – 9 de septiembre
+                                </div>
                             </div>
                         </div>
                     </div>
